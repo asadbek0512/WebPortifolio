@@ -91,9 +91,9 @@ npm run dev
 ```
 
 5. Open your browser:
-   - Root: http://localhost:3000 (redirects to /en)
-   - English: http://localhost:3000/en
-   - Korean: http://localhost:3000/ko
+   - Root: http://localhost:6000 (redirects to /en)
+   - English: http://localhost:6000/en
+   - Korean: http://localhost:6000/ko
 
 ## 🌐 Internationalization
 
