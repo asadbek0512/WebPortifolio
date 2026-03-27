@@ -37,8 +37,11 @@ export function CustomCursor() {
       }
     };
 
-    window.addEventListener('mousemove', moveCursor);
-    window.addEventListener('mouseover', handleMouseOver);
+    // Only add listeners on desktop (no touch devices)
+    if (window.innerWidth > 768) {
+      window.addEventListener('mousemove', moveCursor);
+      window.addEventListener('mouseover', handleMouseOver);
+    }
 
     return () => {
       window.removeEventListener('mousemove', moveCursor);
@@ -46,12 +49,21 @@ export function CustomCursor() {
     };
   }, [cursorX, cursorY]);
 
-  // Only show on desktop
-  if (typeof window !== 'undefined' && window.innerWidth <= 768) {
-    return null;
-  }
+  // Only show on desktop (screen width > 768px)
+  const [isDesktop, setIsDesktop] = useState(false);
 
-  if (!isMounted) {
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsDesktop(window.innerWidth > 768);
+    };
+
+    checkScreen();
+    window.addEventListener('resize', checkScreen);
+
+    return () => window.removeEventListener('resize', checkScreen);
+  }, []);
+
+  if (!isMounted || !isDesktop) {
     return null;
   }
 
