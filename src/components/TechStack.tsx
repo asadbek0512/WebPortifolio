@@ -51,10 +51,7 @@ const techColors: Record<string, string> = {
   Swiper: '#6332F6',
   'Anime.js': '#C9A84C',
   MUI: '#007FFF',
-  HTML5: '#E34F26',
-  CSS3: '#1572B6',
   EJS: '#B4CA65',
-  PHP: '#777BB4',
   Mongoose: '#880000',
   Bcrypt: '#F7DF1E',
   Sessions: '#C9A84C',
@@ -63,7 +60,6 @@ const techColors: Record<string, string> = {
   CORS: '#C9A84C',
   Ubuntu: '#E95420',
   Kali: '#2B78C9',
-  'Docker Compose': '#2496ED',
 };
 
 // Technologies that use PNG images instead of SVG
