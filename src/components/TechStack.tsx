@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,9 +26,11 @@ const techColors: Record<string, string> = {
   NestJS: '#E0234E',
   'Express.js': '#000000',
   Python: '#3776AB',
+  PHP: '#777BB4',
   MongoDB: '#47A248',
   MySQL: '#4479A1',
   Docker: '#2496ED',
+  'Docker Compose': '#2496ED',
   Git: '#F05032',
   GitHub: '#181717',
   Linux: '#FCC624',
@@ -38,12 +41,33 @@ const techColors: Record<string, string> = {
   'REST API': '#C9A84C',
   JWT: '#F7DF1E',
   WebSocket: '#C9A84C',
+  'Redux Toolkit': '#764ABC',
+  'Context API': '#61DAFB',
+  'Apollo Client': '#E10098',
+  'React Query': '#FF4154',
+  jQuery: '#0769AD',
+  Axios: '#5A29E3',
+  SweetAlert: '#C9A84C',
+  Swiper: '#6332F6',
+  'Anime.js': '#C9A84C',
+  MUI: '#007FFF',
+  HTML5: '#E34F26',
+  CSS3: '#1572B6',
+  EJS: '#B4CA65',
+  PHP: '#777BB4',
+  Mongoose: '#880000',
+  Bcrypt: '#F7DF1E',
+  Sessions: '#C9A84C',
+  Multer: '#000000',
+  Cookies: '#C9A84C',
+  CORS: '#C9A84C',
+  Ubuntu: '#E95420',
+  Kali: '#2B78C9',
+  'Docker Compose': '#2496ED',
 };
 
 // Technologies that use PNG images instead of SVG
-const pngTechs = ['Python', 'Docker', 'GitHub', 'MySQL', 'JWT', 'Linux', 'PM2', 'NestJS', 'NGINX', 'Socket.IO', 'WebSocket', 'REST API', 'Next.js', 'Express.js', 'VPS'];
-
-// Simple Icons SVG paths for technologies that have them
+const pngTechs = ['Python', 'Docker', 'Docker Compose', 'GitHub', 'MySQL', 'JWT', 'Linux', 'PM2', 'NestJS', 'NGINX', 'Socket.IO', 'WebSocket', 'REST API', 'Next.js', 'Express.js', 'VPS', 'Ubuntu', 'Kali', 'MongoDB'];
 const techIcons: Record<string, JSX.Element> = {
   TypeScript: (
     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -145,23 +169,123 @@ const techIcons: Record<string, JSX.Element> = {
       <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5zm-1.5-6.75v-7.5l6 3.75-6 3.75z"/>
     </svg>
   ),
+  'Redux Toolkit': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5zm4.5-9h-3v3h-3v-3h-3v-3h3v-3h3v3h3v3z"/>
+    </svg>
+  ),
+  'Context API': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="12" r="4"/>
+    </svg>
+  ),
+  'Apollo Client': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/>
+    </svg>
+  ),
+  'React Query': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M12 7v5l3 3"/>
+    </svg>
+  ),
+  jQuery: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5z"/>
+    </svg>
+  ),
+  Axios: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0L2 6l10 6 10-6L12 0zm0 14L2 8v10l10 6 10-6V8l-10 6z"/>
+    </svg>
+  ),
+  SweetAlert: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5zm1-7h-2v-2h2v2zm0-4h-2V7h2v4z"/>
+    </svg>
+  ),
+  Swiper: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <rect x="2" y="6" width="20" height="12" rx="2" fill="none" stroke="currentColor" strokeWidth="2"/><circle cx="7" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="17" cy="12" r="1.5"/>
+    </svg>
+  ),
+  'Anime.js': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5z"/>
+    </svg>
+  ),
+  MUI: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0L1 7l11 7 11-7L12 0zm0 16L1 9v10l11 7 11-7V9l-11 7z"/>
+    </svg>
+  ),
+  EJS: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M0 0h24v24H0V0zm20 18H4V6h16v12zM6 8h12v2H6V8zm0 4h12v2H6v-2zm0 4h8v2H6v-2z"/>
+    </svg>
+  ),
+  PHP: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5zm-1-7h-2v-2h2v2zm0-4h-2V7h2v4z"/>
+    </svg>
+  ),
+  Mongoose: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5z"/>
+    </svg>
+  ),
+  Bcrypt: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C9.243 2 7 4.243 7 7v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7c0-2.757-2.243-5-5-5zm0 2c1.654 0 3 1.346 3 3v3H9V7c0-1.654 1.346-3 3-3zm0 10a2 2 0 110 4 2 2 0 010-4z"/>
+    </svg>
+  ),
+  Sessions: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5z"/>
+    </svg>
+  ),
+  Multer: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5zm-1-7h2v-2h-2v2zm0-4h2V7h-2v4z"/>
+    </svg>
+  ),
+  Cookies: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <circle cx="12" cy="12" r="10"/><circle cx="8" cy="10" r="1.5" fill="#080808"/><circle cx="14" cy="8" r="1.5" fill="#080808"/><circle cx="16" cy="14" r="1.5" fill="#080808"/>
+    </svg>
+  ),
+  CORS: (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5z"/>
+    </svg>
+  ),
+  'Docker Compose': (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5z"/>
+    </svg>
+  ),
 };
 
 const techStack = {
   frontend: [
     'TypeScript', 'JavaScript', 'React', 'Next.js', 'React Native',
-    'Redux', 'GraphQL', 'Three.js', 'HTML5', 'CSS3', 'Sass', 'Socket.IO',
+    'Redux', 'Redux Toolkit', 'Context API', 'Apollo Client', 'React Query',
+    'jQuery', 'Axios', 'Socket.IO', 'SweetAlert',
+    'Swiper', 'Anime.js', 'Three.js', 'MUI',
+    'HTML5', 'CSS3', 'Sass', 'EJS',
   ],
   backend: [
-    'Node.js', 'NestJS', 'Express.js', 'Python', 'MongoDB',
-    'MySQL', 'JWT', 'WebSocket', 'Docker', 'REST API',
+    'Node.js', 'TypeScript', 'PHP', 'NestJS', 'Express.js', 'Python', 'GraphQL',
+    'MongoDB', 'Mongoose', 'MySQL', 'REST API', 'JWT', 'Bcrypt', 'Sessions',
+    'Multer', 'WebSocket', 'Socket.IO', 'Cookies', 'CORS',
   ],
   devops: [
-    'Linux', 'NGINX', 'Docker', 'PM2', 'CI/CD', 'Git', 'GitHub', 'VPS',
+    'Linux', 'Ubuntu', 'Kali', 'VPS', 'Docker', 'Docker Compose', 'NGINX', 'PM2', 'CI/CD',
   ],
 };
 
 export default function TechStack() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'frontend' | 'backend' | 'devops'>('frontend');
   const sectionRef = useRef<HTMLElement>(null);
   const frontendRef = useRef<HTMLDivElement>(null);
@@ -209,7 +333,7 @@ export default function TechStack() {
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold/50 to-gold/20" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-cream text-center">
-              Tech Stack
+              {t('techstack.title')}
             </h2>
             <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gold/50 to-gold/20" />
           </div>
@@ -226,7 +350,7 @@ export default function TechStack() {
                   : 'text-cream/50'
               }`}
             >
-              Frontend
+              {t('techstack.frontend')}
             </button>
             <button
               onClick={() => setActiveTab('backend')}
@@ -236,7 +360,7 @@ export default function TechStack() {
                   : 'text-cream/50'
               }`}
             >
-              Backend
+              {t('techstack.backend')}
             </button>
             <button
               onClick={() => setActiveTab('devops')}
@@ -246,43 +370,43 @@ export default function TechStack() {
                   : 'text-cream/50'
               }`}
             >
-              DevOps
+              {t('techstack.devops')}
             </button>
           </div>
         </div>
 
-        {/* Desktop: 3 Columns with dividers */}
-        <div className="hidden md:grid grid-cols-3 gap-0 max-w-6xl mx-auto">
-          {/* Frontend Column */}
-          <div ref={frontendRef} className="pl-0 pr-8">
+        {/* Desktop: Single Row with Tabs */}
+        <div className="hidden md:block max-w-7xl mx-auto">
+          {/* Frontend */}
+          <div ref={frontendRef} className="mb-10">
             <h3 className="text-[14px] font-body font-semibold text-[#C9A84C] tracking-[6px] uppercase mb-6 pb-3 border-b border-[rgba(201,168,76,0.2)]">
-              Frontend
+              {t('techstack.frontend')}
             </h3>
-            <div className="flex flex-wrap justify-start items-start gap-[10px] w-full">
+            <div className="flex flex-wrap justify-start items-start gap-3 w-full">
               {techStack.frontend.map((tech) => (
                 <TechPill key={tech} name={tech} />
               ))}
             </div>
           </div>
 
-          {/* Backend Column */}
-          <div ref={backendRef} className="pl-8 pr-8 border-l border-[rgba(201,168,76,0.15)]">
+          {/* Backend */}
+          <div ref={backendRef} className="mb-10">
             <h3 className="text-[14px] font-body font-semibold text-[#C9A84C] tracking-[6px] uppercase mb-6 pb-3 border-b border-[rgba(201,168,76,0.2)]">
-              Backend
+              {t('techstack.backend')}
             </h3>
-            <div className="flex flex-wrap justify-start items-start gap-[10px] w-full">
+            <div className="flex flex-wrap justify-start items-start gap-3 w-full">
               {techStack.backend.map((tech) => (
                 <TechPill key={tech} name={tech} />
               ))}
             </div>
           </div>
 
-          {/* DevOps Column */}
-          <div ref={devopsRef} className="pl-8 pr-0 border-l border-[rgba(201,168,76,0.15)]">
+          {/* DevOps */}
+          <div ref={devopsRef}>
             <h3 className="text-[14px] font-body font-semibold text-[#C9A84C] tracking-[6px] uppercase mb-6 pb-3 border-b border-[rgba(201,168,76,0.2)]">
-              DevOps
+              {t('techstack.devops')}
             </h3>
-            <div className="flex flex-wrap justify-start items-start gap-[10px] w-full">
+            <div className="flex flex-wrap justify-start items-start gap-3 w-full">
               {techStack.devops.map((tech) => (
                 <TechPill key={tech} name={tech} />
               ))}
@@ -322,11 +446,15 @@ function TechPill({ name }: { name: string }) {
     'Next.js': 'nextjs',
     'Express.js': 'expressjs',
     'VPS': 'vps',
+    'Docker Compose': 'docker',
+    'Ubuntu': 'ubuntu',
+    'Kali': 'kali',
+    'MongoDB': 'mongodb',
   };
 
   return (
     <motion.div
-      className="inline-flex items-center gap-3 px-5 py-3 bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.12)] rounded-[8px] cursor-pointer transition-all duration-200"
+      className="inline-flex items-center gap-3 px-4 py-2.5 bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.12)] rounded-[8px] cursor-pointer transition-all duration-200"
       style={{ whiteSpace: 'nowrap' }}
       whileHover={{
         y: -2,
@@ -341,19 +469,19 @@ function TechPill({ name }: { name: string }) {
           specialIcons[name] ? (
             <img
               src={`/icons/${specialIcons[name]}.png`}
-              width="24"
-              height="24"
+              width="22"
+              height="22"
               style={{
                 objectFit: 'contain',
-                filter: name === 'Next.js' ? 'invert(1)' : 'brightness(0) invert(1)'
+                filter: name === 'Next.js' || name === 'Express.js' ? 'invert(1)' : 'none'
               }}
               alt={name}
             />
           ) : (
             <img
               src={`/icons/${name.toLowerCase()}.png`}
-              width="24"
-              height="24"
+              width="22"
+              height="22"
               style={{ objectFit: 'contain' }}
               alt={name}
             />
@@ -362,7 +490,7 @@ function TechPill({ name }: { name: string }) {
           techIcons[name] || techIcons['Git']
         )}
       </div>
-      <span className="text-[15px] text-[#C9A84C] font-body font-medium">
+      <span className="text-[14px] text-[#C9A84C] font-body font-medium">
         {name}
       </span>
     </motion.div>

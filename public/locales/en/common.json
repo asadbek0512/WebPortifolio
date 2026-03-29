@@ -1,0 +1,106 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "stack": "Stack",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title_first": "Khusanov",
+    "title_last": "Asadbek",
+    "subtitle": "Full Stack Developer",
+    "download_portfolio": "Download Portfolio",
+    "download_resume": "Download Resume"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "I am a Full Stack Developer with experience in building numerous successful projects across the Next.js, NestJS, and Python ecosystems. My approach goes beyond just writing code; I focus on creating clean, high-performance digital solutions from the architectural level up. In every project, I strive to find the perfect balance between seamless user experience and technical excellence.",
+    "stats": {
+      "years": "Years Experience",
+      "projects": "Projects Completed",
+      "technologies": "Technologies",
+      "satisfaction": "Client Satisfaction"
+    }
+  },
+  "techstack": {
+    "title": "Tech Stack",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "devops": "DevOps"
+  },
+  "projects": {
+    "title": "Selected Works",
+    "view_project": "View Project",
+    "visit_site": "VISIT SITE",
+    "read_more": "Read More",
+    "read_less": "Read Less",
+    "zinfurn": {
+      "shortDesc": "Premium furniture e-commerce platform with AI chat assistant",
+      "fullDesc": "Zinfurn is a premium furniture e-commerce platform built with Next.js and Node.js. Features include an AI-powered chat assistant that helps users find furniture by budget and style, advanced real-time filtering by category, material, and color, a community section for user reviews and discussions, agent listings, repair service booking, and a customer support system. The platform serves global clients with full SEO optimization and responsive design across all devices."
+    },
+    "zuhorbooks": {
+      "shortDesc": "Online book platform with rich catalog and reader-focused UI",
+      "fullDesc": "ZuhorBooks is an online book platform built with React. It offers a rich catalog of books organized by genre and category, with a clean reader-focused UI. Users can browse books, view detailed descriptions, and explore curated collections. The platform features smooth navigation, responsive layout for all screen sizes, and optimized performance."
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "nova_role": "Full Stack Developer",
+    "nova_period": "Aug 2023 – Nov 2024",
+    "nova_location": "Remote (International)",
+    "nova_desc1": "Worked with 8-person international development team",
+    "nova_desc2": "Built SEO-optimized web apps using Next.js, TypeScript, Node.js",
+    "nova_desc3": "Collaborated on feature design and global client deployments",
+    "page_role": "Frontend Developer",
+    "page_period": "Oct 2022 – Jun 2023",
+    "page_location": "Uzbekistan",
+    "page_desc1": "Worked with 6-person frontend software team",
+    "page_desc2": "Participated in sprint planning, code reviews, UI/UX discussions",
+    "page_desc3": "Built responsive interfaces using React and Next.js"
+  },
+  "education": {
+    "title": "Education",
+    "university": "Bucheon University",
+    "university_kr": "부천대학교",
+    "degree": "Bachelor's in Computer Engineering",
+    "degree_kr": "컴퓨터공학 학사",
+    "period": "2021 – 2025",
+    "description": "Located in Bucheon, Gyeonggi-do, South Korea. Studied core subjects including algorithms, data structures, software engineering, operating systems, and web development."
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "Get In Touch",
+    "name_label": "Full Name",
+    "email_label": "Email",
+    "message_label": "Message",
+    "send_button": "Send Message",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "telegram": "Telegram"
+  },
+  "languages": {
+    "en": "English",
+    "kr": "한국어",
+    "uz": "O'zbek",
+    "select": "Select Language",
+    "description": "Choose your preferred language to view this portfolio"
+  },
+  "footer": {
+    "navigate": "NAVIGATE",
+    "services": "SERVICES",
+    "connect": "CONNECT",
+    "web_development": "Web Development",
+    "api_design": "API Design",
+    "ui_ux": "UI/UX",
+    "ready_text": "Ready to build something great?",
+    "work_text": "Let's work together",
+    "get_in_touch": "Get in touch →",
+    "copyright": "All rights reserved.",
+    "built_with": "Built with Next.js & ♥",
+    "full_stack_dev": "Full Stack Developer",
+    "seoul_korea": "Seoul, South Korea"
+  }
+}

@@ -2,16 +2,20 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const navLinks = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'About' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#stack', label: 'Stack' },
-  { href: '#experience', label: 'Experience' },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Logo from '@/components/Logo';
 
 export default function Navbar() {
+  const { t, locale, setLocale } = useLanguage();
+
+  const navLinks = [
+    { href: '#home', label: t('nav.home'), key: 'home' },
+    { href: '#about', label: t('nav.about'), key: 'about' },
+    { href: '#projects', label: t('nav.projects'), key: 'projects' },
+    { href: '#stack', label: t('nav.stack'), key: 'stack' },
+    { href: '#experience', label: t('nav.experience'), key: 'experience' },
+  ];
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -74,15 +78,15 @@ export default function Navbar() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <a href="#home" className="text-2xl font-bold text-gold font-heading">
-              {'< />'}
+            <a href="#home">
+              <Logo size="sm" />
             </a>
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
                 <a
-                  key={link.label}
+                  key={link.key}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="text-cream/80 hover:text-gold transition-colors duration-200 text-sm font-body"
@@ -90,12 +94,13 @@ export default function Navbar() {
                   {link.label}
                 </a>
               ))}
+              <LanguageSwitcher variant="small" />
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, '#contact')}
                 className="px-6 py-2.5 rounded-full bg-gold text-background font-body text-sm font-semibold hover:bg-gold-light transition-colors duration-200"
               >
-                Contact
+                {t('nav.contact')}
               </a>
             </div>
 
@@ -119,7 +124,7 @@ export default function Navbar() {
               <AnimatePresence>
                 {isMobileMenuOpen && (
                   <motion.div
-                    className="absolute top-[60px] right-0 w-[200px] bg-[#111111] border border-[rgba(201,168,76,0.3)] rounded-[8px] py-2 shadow-[0_8px_32px_rgba(0,0,0,0.6)] z-[999]"
+                    className="absolute top-[60px] right-0 w-[220px] bg-[#111111] border border-[rgba(201,168,76,0.3)] rounded-[8px] py-2 shadow-[0_8px_32px_rgba(0,0,0,0.6)] z-[999]"
                     initial={{ opacity: 0, y: -8, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -8, scale: 0.95 }}
@@ -127,12 +132,12 @@ export default function Navbar() {
                   >
                     {navLinks.map((link, index) => (
                       <a
-                        key={link.label}
+                        key={link.key}
                         href={link.href}
                         onClick={(e) => handleNavClick(e, link.href)}
                         className="block px-5 py-3 text-[13px] tracking-[2px] text-[#F5F0E8] hover:text-[#C9A84C] hover:bg-[rgba(201,168,76,0.05)] transition-colors"
                         style={{
-                          borderBottom: index < navLinks.length ? '1px solid rgba(201,168,76,0.08)' : 'none',
+                          borderBottom: index < navLinks.length - 1 ? '1px solid rgba(201,168,76,0.08)' : 'none',
                         }}
                       >
                         {link.label}
@@ -142,9 +147,39 @@ export default function Navbar() {
                       href="#contact"
                       onClick={(e) => handleNavClick(e, '#contact')}
                       className="block px-5 py-3 text-[13px] tracking-[2px] text-[#C9A84C] hover:bg-[rgba(201,168,76,0.05)] transition-colors"
+                      style={{ borderBottom: '1px solid rgba(201,168,76,0.08)' }}
                     >
-                      Contact
+                      {t('nav.contact')}
                     </a>
+                    
+                    {/* Languages Section */}
+                    <div className="px-5 py-3">
+                      <div className="text-[11px] tracking-[3px] text-[rgba(245,240,232,0.5)] uppercase mb-3">
+                        Languages
+                      </div>
+                      <div className="flex gap-2">
+                        {[
+                          { code: 'en', flag: '🇬🇧' },
+                          { code: 'kr', flag: '🇰🇷' },
+                          { code: 'uz', flag: '🇺🇿' },
+                        ].map((lang) => (
+                          <button
+                            key={lang.code}
+                            onClick={() => {
+                              setLocale(lang.code as 'en' | 'kr' | 'uz');
+                              window.location.reload();
+                            }}
+                            className={`flex-1 flex items-center justify-center px-3 py-2 rounded border transition-all ${
+                              locale === lang.code
+                                ? 'border-[#C9A84C] bg-[rgba(201,168,76,0.1)]'
+                                : 'border-[rgba(201,168,76,0.3)] hover:border-[#C9A84C]'
+                            }`}
+                          >
+                            <span className="text-xl">{lang.flag}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>

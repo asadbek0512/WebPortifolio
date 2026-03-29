@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const projects = [
   {
@@ -34,6 +35,13 @@ const projects = [
 ];
 
 export default function Projects() {
+  const { t } = useLanguage();
+
+  const translatedProjects = projects.map(project => ({
+    ...project,
+    shortDesc: t(`projects.${project.id}.shortDesc`),
+    fullDesc: t(`projects.${project.id}.fullDesc`),
+  }));
   return (
     <section id="projects" className="py-20 md:py-32 relative">
       <div className="container mx-auto px-4">
@@ -48,7 +56,7 @@ export default function Projects() {
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold/50 to-gold/20" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-cream text-center">
-              Selected Works
+              {t('projects.title')}
             </h2>
             <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gold/50 to-gold/20" />
           </div>
@@ -56,11 +64,12 @@ export default function Projects() {
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {translatedProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
               index={index}
+              t={t}
             />
           ))}
         </div>
@@ -72,9 +81,11 @@ export default function Projects() {
 function ProjectCard({
   project,
   index,
+  t,
 }: {
   project: typeof projects[0];
   index: number;
+  t: (key: string) => string;
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -176,7 +187,7 @@ function ProjectCard({
           initial={{ opacity: 0, y: -10 }}
           whileHover={{ opacity: 1, y: 0 }}
         >
-          VISIT SITE
+          {t('projects.visit_site')}
         </motion.a>
       </div>
 
@@ -197,7 +208,7 @@ function ProjectCard({
               onClick={() => setIsExpanded(!isExpanded)}
               className="mt-2 text-gold font-body text-sm hover:text-gold-light transition-colors flex items-center gap-1"
             >
-              {isExpanded ? 'Read Less' : 'Read More'}
+              {isExpanded ? t('projects.read_less') : t('projects.read_more')}
               <svg
                 className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
                 fill="none"
@@ -230,7 +241,7 @@ function ProjectCard({
           className="inline-flex items-center gap-2 text-gold font-body text-sm hover:text-gold-light transition-colors"
           whileHover={{ x: 5 }}
         >
-          View Project
+          {t('projects.view_project')}
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>

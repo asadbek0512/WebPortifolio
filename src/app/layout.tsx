@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, Space_Mono } from 'next/font/google';
 import { CustomCursor } from '@/components/CustomCursor';
+import Providers from '@/components/Providers';
 import './globals.css';
 
 const cormorant = Cormorant_Garamond({
@@ -18,14 +19,17 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Asadbek Husanov (DONI) - Full Stack Developer Portfolio',
-  description: 'Professional portfolio of Asadbek Husanov, a Full Stack Developer based in Seoul, Korea. Specializing in modern web and mobile applications.',
+  title: 'Khusanov',
+  description: 'Professional portfolio of Khusanov Asadbek, a Full Stack Developer based in Seoul, Korea. Specializing in modern web and mobile applications.',
   keywords: ['Full Stack Developer', 'Web Developer', 'Seoul', 'Korea', 'React', 'Next.js', 'TypeScript'],
-  authors: [{ name: 'Asadbek Husanov' }],
+  authors: [{ name: 'Khusanov Asadbek' }],
   openGraph: {
-    title: 'Asadbek Husanov (DONI) - Full Stack Developer',
-    description: 'Professional portfolio of Asadbek Husanov, a Full Stack Developer based in Seoul, Korea.',
+    title: 'Khusanov',
+    description: 'Professional portfolio of Khusanov Asadbek, a Full Stack Developer based in Seoul, Korea.',
     type: 'website',
+  },
+  icons: {
+    icon: '/favicon.svg',
   },
 };
 
@@ -38,7 +42,7 @@ export default function RootLayout({
     <html lang="en" className={`${cormorant.variable} ${spaceMono.variable}`}>
       <body className="font-body bg-background text-cream antialiased">
         <CustomCursor />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

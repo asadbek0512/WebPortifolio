@@ -1,0 +1,106 @@
+{
+  "nav": {
+    "home": "홈",
+    "about": "소개",
+    "projects": "프로젝트",
+    "stack": "스택",
+    "experience": "경력",
+    "contact": "연락하기"
+  },
+  "hero": {
+    "title_first": "쿠사노프",
+    "title_last": "아다베크",
+    "subtitle": "풀스택 개발자",
+    "download_portfolio": "포트폴리오 다운로드",
+    "download_resume": "이력서 다운로드"
+  },
+  "about": {
+    "title": "소개",
+    "description": "저는 Next.js, NestJS 및 Python 생태계에서 수많은 성공적인 프로젝트를 구축한 풀스택 개발자입니다. 저의 접근 방식은 단순히 코드를 작성하는 것을 넘어서며, 아키텍처 수준부터 깔끔하고 고성능의 디지털 솔루션을 만드는 데 중점을 둡니다. 모든 프로젝트에서 원활한 사용자 경험과 기술적 우수성 사이의 완벽한 균형을 찾기 위해 노력합니다.",
+    "stats": {
+      "years": "년 경력",
+      "projects": "완료된 프로젝트",
+      "technologies": "기술",
+      "satisfaction": "고객 만족도"
+    }
+  },
+  "techstack": {
+    "title": "기술 스택",
+    "frontend": "프론트엔드",
+    "backend": "백엔드",
+    "devops": "데브옵스"
+  },
+  "projects": {
+    "title": "선정된 작품",
+    "view_project": "프로젝트 보기",
+    "visit_site": "사이트 방문",
+    "read_more": "더 읽기",
+    "read_less": "줄이기",
+    "zinfurn": {
+      "shortDesc": "AI 채팅 어시스턴트가 있는 프리미엄 가구 이커머스 플랫폼",
+      "fullDesc": "Zinfurn 은 Next.js 와 Node.js 로 구축된 프리미엄 가구 이커머스 플랫폼입니다. 예산과 스타일에 따라 가구를 찾는 데 도움을 주는 AI 기반 채팅 어시스턴트, 카테고리, 재료 및 색상별 고급 실시간 필터링, 사용자 리뷰 및 토론을 위한 커뮤니티 섹션, 에이전트 리스팅, 수리 서비스 예약 및 고객 지원 시스템을 갖추고 있습니다. 이 플랫폼은 전 세계 고객을 대상으로 모든 장치에서 완전한 SEO 최적화 및 반응형 디자인을 제공합니다."
+    },
+    "zuhorbooks": {
+      "shortDesc": "풍부한 카탈로그와 독자 중심 UI 를 갖춘 온라인 북 플랫폼",
+      "fullDesc": "ZuhorBooks 는 React 로 구축된 온라인 북 플랫폼입니다. 장르 및 카테고리별로 정리된 풍부한 책 카탈로그를 제공하며, 깔끔한 독자 중심 UI 를 갖추고 있습니다. 사용자는 책을 찾아보고, 자세한 설명을 보고, 큐레이션된 컬렉션을 탐색할 수 있습니다. 이 플랫폼은 모든 화면 크기에 맞는 부드러운 탐색, 반응형 레이아웃 및 최적화된 성능을 제공합니다."
+    }
+  },
+  "experience": {
+    "title": "경력",
+    "nova_role": "풀스택 개발자",
+    "nova_period": "2023 년 8 월 – 2024 년 11 월",
+    "nova_location": "원격 (국제)",
+    "nova_desc1": "8 명의 국제 개발 팀과 함께 작업",
+    "nova_desc2": "Next.js, TypeScript, Node.js 를 사용한 SEO 최적화 웹 애플리케이션 구축",
+    "nova_desc3": "기능 설계 및 글로벌 클라이언트 배포에 협력",
+    "page_role": "프론트엔드 개발자",
+    "page_period": "2022 년 10 월 – 2023 년 6 월",
+    "page_location": "우즈베키스탄",
+    "page_desc1": "6 명의 프론트엔드 소프트웨어 팀과 함께 작업",
+    "page_desc2": "스프린트 계획, 코드 리뷰, UI/UX 논의에 참여",
+    "page_desc3": "React 와 Next.js 를 사용하여 반응형 인터페이스 구축"
+  },
+  "education": {
+    "title": "학력",
+    "university": "부천대학교",
+    "university_kr": "부천대학교",
+    "degree": "컴퓨터공학 학사",
+    "degree_kr": "컴퓨터공학 학사",
+    "period": "2021 – 2025",
+    "description": "경기도 부천시에 위치. 알고리즘, 자료구조, 소프트웨어 공학, 운영체제, 웹 개발 등 핵심 과목을 전공했습니다."
+  },
+  "contact": {
+    "title": "연락하기",
+    "subtitle": "연락하기",
+    "name_label": "이름",
+    "email_label": "이메일",
+    "message_label": "메시지",
+    "send_button": "메시지 보내기",
+    "email": "이메일",
+    "github": "깃허브",
+    "linkedin": "링크드인",
+    "telegram": "텔레그램"
+  },
+  "languages": {
+    "en": "English",
+    "kr": "한국어",
+    "uz": "O'zbek",
+    "select": "언어 선택",
+    "description": "포트폴리오를 볼 언어를 선택하세요"
+  },
+  "footer": {
+    "navigate": "이동",
+    "services": "서비스",
+    "connect": "연결",
+    "web_development": "웹 개발",
+    "api_design": "API 설계",
+    "ui_ux": "UI/UX 디자인",
+    "ready_text": "위대한 것을 구축할 준비가 되셨나요?",
+    "work_text": "함께 일해요",
+    "get_in_touch": "연락하기 →",
+    "copyright": "모든 권리 보유.",
+    "built_with": "Next.js & ♥ 로 제작됨",
+    "full_stack_dev": "풀스택 개발자",
+    "seoul_korea": "서울, 대한민국"
+  }
+}

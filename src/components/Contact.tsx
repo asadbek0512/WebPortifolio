@@ -2,8 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,7 +31,7 @@ export default function Contact() {
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold/50 to-gold/20" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-cream text-center">
-              Get In Touch
+              {t('contact.title')}
             </h2>
             <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gold/50 to-gold/20" />
           </div>
@@ -37,9 +39,9 @@ export default function Contact() {
 
         {/* Contact Content: Icons LEFT, Form RIGHT */}
         <div className="max-w-6xl mx-auto grid md:grid-cols-[1fr_1.5fr] gap-[60px] items-stretch">
-          {/* LEFT: Contact Items (vertical list) */}
+          {/* LEFT: Contact Items (vertical list) - Desktop only */}
           <motion.div
-            className="flex flex-col justify-center h-full w-full"
+            className="hidden md:flex flex-col justify-center h-full w-full"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-100px' }}
@@ -55,7 +57,7 @@ export default function Contact() {
               </svg>
               <div>
                 <div className="text-[11px] tracking-[3px] text-[rgba(245,240,232,0.5)] uppercase mb-1">
-                  Email
+                  {t('contact.email')}
                 </div>
                 <div className="text-[14px] text-[#F5F0E8]">
                   khusanovasadbek777@gmail.com
@@ -75,7 +77,7 @@ export default function Contact() {
               </svg>
               <div>
                 <div className="text-[11px] tracking-[3px] text-[rgba(245,240,232,0.5)] uppercase mb-1">
-                  GitHub
+                  {t('contact.github')}
                 </div>
                 <div className="text-[14px] text-[#F5F0E8]">
                   github.com/asadbek0512
@@ -95,7 +97,7 @@ export default function Contact() {
               </svg>
               <div>
                 <div className="text-[11px] tracking-[3px] text-[rgba(245,240,232,0.5)] uppercase mb-1">
-                  LinkedIn
+                  {t('contact.linkedin')}
                 </div>
                 <div className="text-[14px] text-[#F5F0E8]">
                   linkedin.com/in/asadbek-khusanov
@@ -115,7 +117,7 @@ export default function Contact() {
               </svg>
               <div>
                 <div className="text-[11px] tracking-[3px] text-[rgba(245,240,232,0.5)] uppercase mb-1">
-                  Telegram
+                  {t('contact.telegram')}
                 </div>
                 <div className="text-[14px] text-[#F5F0E8]">
                   @Khusanov_Asadbek2000
@@ -132,16 +134,18 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="text-2xl font-heading font-bold text-cream mb-6">
-              Get In Touch
+              {t('contact.subtitle')}
             </h3>
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
                 <label htmlFor="name" className="block text-cream/80 font-body mb-2 text-sm">
-                  Full Name
+                  {t('contact.name_label')}
                 </label>
                 <input
                   type="text"
                   id="name"
+                  name="name"
+                  autoComplete="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-3 py-[12px] rounded-[4px] bg-[#1a1a1a] border border-[rgba(201,168,76,0.3)] text-cream font-body focus:border-[#C9A84C] focus:outline-none transition-colors"
@@ -150,11 +154,13 @@ export default function Contact() {
               </div>
               <div>
                 <label htmlFor="email" className="block text-cream/80 font-body mb-2 text-sm">
-                  Email
+                  {t('contact.email_label')}
                 </label>
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-3 py-[12px] rounded-[4px] bg-[#1a1a1a] border border-[rgba(201,168,76,0.3)] text-cream font-body focus:border-[#C9A84C] focus:outline-none transition-colors"
@@ -163,10 +169,12 @@ export default function Contact() {
               </div>
               <div>
                 <label htmlFor="message" className="block text-cream/80 font-body mb-2 text-sm">
-                  Message
+                  {t('contact.message_label')}
                 </label>
                 <textarea
                   id="message"
+                  name="message"
+                  autoComplete="off"
                   rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -180,7 +188,7 @@ export default function Contact() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                Send Message
+                {t('contact.send_button')}
               </motion.button>
             </form>
           </motion.div>

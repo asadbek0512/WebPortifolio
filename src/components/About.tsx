@@ -2,8 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function About() {
+  const { t } = useLanguage();
+  
   return (
     <section id="about" className="py-20 md:py-32 relative bg-background/50">
       <div className="container mx-auto px-4">
@@ -18,7 +21,7 @@ export default function About() {
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold/50 to-gold/20" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-cream text-center">
-              About Me
+              {t('about.title')}
             </h2>
             <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gold/50 to-gold/20" />
           </div>
@@ -48,6 +51,9 @@ export default function About() {
                 fallbackText="A"
                 className="w-full h-full object-cover rounded-lg border border-gold/30 shadow-gold-glow"
               />
+              {/* Overlay shadow from all 4 sides */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-black/15 via-transparent to-black/15 pointer-events-none" />
             </motion.div>
           </div>
 
@@ -58,9 +64,7 @@ export default function About() {
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-gold via-gold/50 to-transparent rounded-full" />
               
               <p className="pl-6 text-lg md:text-xl text-cream/80 font-body leading-relaxed">
-                I&apos;m a Full Stack Developer with 2+ years of experience building scalable web applications. I specialize in React, Next.js, and Node.js ecosystems. Currently based in Seoul, South Korea, holding a D-10 Job Seeker Visa, open to exciting opportunities.
-                <br /><br />
-                I have worked with international teams delivering production-ready applications for real clients. Passionate about clean code, performance, and turning ideas into polished digital products.
+                {t('about.description')}
               </p>
             </div>
 
@@ -73,13 +77,13 @@ export default function About() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               {[
-                { number: '2+', label: 'Years Experience' },
-                { number: '20+', label: 'Projects Completed' },
-                { number: '15+', label: 'Technologies' },
-                { number: '100%', label: 'Client Satisfaction' },
+                { number: '2+', label: t('about.stats.years') },
+                { number: '20+', label: t('about.stats.projects') },
+                { number: '15+', label: t('about.stats.technologies') },
+                { number: '100%', label: t('about.stats.satisfaction') },
               ].map((stat, index) => (
                 <motion.div
-                  key={stat.label}
+                  key={index}
                   className="text-center p-6 rounded-xl bg-background border border-white/5 hover:border-gold/30 transition-all duration-300"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}

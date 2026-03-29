@@ -1,0 +1,106 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "about": "Men haqimda",
+    "projects": "Loyihalar",
+    "stack": "Texnologiyalar",
+    "experience": "Tajriba",
+    "contact": "Bog'lanish"
+  },
+  "hero": {
+    "title_first": "Xusanov",
+    "title_last": "Asadbek",
+    "subtitle": "Full Stack Dasturchi",
+    "download_portfolio": "Portfelni yuklab olish",
+    "download_resume": "Rezyumeni yuklab olish"
+  },
+  "about": {
+    "title": "Men haqimda",
+    "description": "Men Next.js, NestJS va Python ekotizimlarida ko'plab muvaffaqiyatli loyihalarni yaratish tajribasiga ega Full Stack dasturchiman. Mening yondashuvim shunchaki kod yozishdan ko'ra ko'proq; men arxitektura darajasidan boshlab toza, yuqori unumdorlikdagi raqamli yechimlarni yaratishga e'tibor qarataman. Har bir loyihada men foydalanuvchi tajribasi va texnik mukammallik o'rtasida mukammal muvozanat topishga intilaman.",
+    "stats": {
+      "years": "Yillik tajriba",
+      "projects": "Bajarilgan loyihalar",
+      "technologies": "Texnologiyalar",
+      "satisfaction": "Mijoz mamnunligi"
+    }
+  },
+  "techstack": {
+    "title": "Texnologiyalar",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "devops": "DevOps"
+  },
+  "projects": {
+    "title": "Tanlangan ishlar",
+    "view_project": "Loyihani ko'rish",
+    "visit_site": "Saytga kirish",
+    "read_more": "Ko'proq o'qish",
+    "read_less": "Kamroq o'qish",
+    "zinfurn": {
+      "shortDesc": "AI chat yordamchisi bilan premium mebel e-commerce platformasi",
+      "fullDesc": "Zinfurn - Next.js va Node.js da qurilgan premium mebel e-commerce platformasi. Byudjet va stil bo'yicha mebel topishda yordam beruvchi AI asosidagi chat yordamchisi, kategoriya, material va rang bo'yicha real vaqt filtrlash, foydalanuvchilar sharhlari va muhokamalari uchun community bo'limi, agentlar ro'yxati, ta'mirlash xizmatini band qilish va mijozlarni qo'llab-quvvatlash tizimi mavjud. Platforma global mijozlar uchun to'liq SEO optimizatsiyasi va barcha qurilmalarda responsiv dizayn bilan xizmat qiladi."
+    },
+    "zuhorbooks": {
+      "shortDesc": "Boy katalog va o'quvchi uchun qulay UI bilan online kitob platformasi",
+      "fullDesc": "ZuhorBooks - React da qurilgan online kitob platformasi. Janr va kategoriya bo'yicha tizimga solingan boy kitob katalogini, toza o'quvchi uchun qulay UI ni taklif qiladi. Foydalanuvchilar kitoblarni ko'rishlari, batafsil tavsiflarni o'qishlari va tanlangan kolleksiyalarni ko'rishlari mumkin. Platforma barcha ekran o'lchamlari uchun silliq navigatsiya, responsiv layout va optimallashtirilgan unumdorlikka ega."
+    }
+  },
+  "experience": {
+    "title": "Tajriba",
+    "nova_role": "Full Stack Dasturchi",
+    "nova_period": "Avg 2023 – Noy 2024",
+    "nova_location": "Masofadan (Xalqaro)",
+    "nova_desc1": "8 kishilik xalqaro dasturchilar jamoasi bilan ishlagan",
+    "nova_desc2": "Next.js, TypeScript, Node.js yordamida SEO-optimal veb-ilovalar yaratgan",
+    "nova_desc3": "Funktsiyalar loyihalash va global mijozlarga joylashtirishda ishtirok etgan",
+    "page_role": "Frontend Dasturchi",
+    "page_period": "Okt 2022 – Iyun 2023",
+    "page_location": "O'zbekiston",
+    "page_desc1": "6 kishilik frontend dasturchilar jamoasi bilan ishlagan",
+    "page_desc2": "Sprint rejalashtirish, kod ko'rib chiqish, UI/UX muhokamalarida qatnashgan",
+    "page_desc3": "React va Next.js yordamida responsiv interfeyslar yaratgan"
+  },
+  "education": {
+    "title": "Ta'lim",
+    "university": "Bucheon University",
+    "university_kr": "부천대학교",
+    "degree": "Kompyuter injiniringi bakalavri",
+    "degree_kr": "컴퓨터공학 학사",
+    "period": "2021 – 2025",
+    "description": "Janubiy Koreya, Bucheon shahrida joylashgan. Algoritmlar, ma'lumotlar tuzilmalari, dasturiy injiniring, operatsion tizimlar va veb dasturlash kabi asosiy fanlarni o'rgangan."
+  },
+  "contact": {
+    "title": "Bog'lanish",
+    "subtitle": "Bog'lanish",
+    "name_label": "To'liq ism",
+    "email_label": "Email",
+    "message_label": "Xabar",
+    "send_button": "Xabar yuborish",
+    "email": "Email",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "telegram": "Telegram"
+  },
+  "languages": {
+    "en": "English",
+    "kr": "한국어",
+    "uz": "O'zbek",
+    "select": "Tilni tanlang",
+    "description": "Ushbu portfelni ko'rish uchun tilingizni tanlang"
+  },
+  "footer": {
+    "navigate": "NAVIGATSIYA",
+    "services": "XIZMATLAR",
+    "connect": "ALOQA",
+    "web_development": "Veb dasturlash",
+    "api_design": "API loyihalash",
+    "ui_ux": "UI/UX dizayn",
+    "ready_text": "Ajoyib narsa yaratishga tayyormisiz?",
+    "work_text": "Keling, birga ishlaymiz",
+    "get_in_touch": "Bog'lanish →",
+    "copyright": "Barcha huquqlar himoyalangan.",
+    "built_with": "Next.js & ♥ bilan yaratilgan",
+    "full_stack_dev": "Full Stack Dasturchi",
+    "seoul_korea": "Seul, Janubiy Koreya"
+  }
+}

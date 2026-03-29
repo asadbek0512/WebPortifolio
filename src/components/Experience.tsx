@@ -1,34 +1,36 @@
 'use client';
 
 import { motion } from 'framer-motion';
-
-const experiences = [
-  {
-    company: 'NovaBuild Tech',
-    role: 'Full Stack Developer',
-    period: 'Aug 2023 – Nov 2024',
-    location: 'Remote (International)',
-    description: [
-      'Worked with 8-person international development team',
-      'Built SEO-optimized web apps using Next.js, TypeScript, Node.js',
-      'Collaborated on feature design and global client deployments',
-    ],
-  },
-  {
-    company: 'PageWave Solutions',
-    role: 'Frontend Developer',
-    period: 'Oct 2022 – Jun 2023',
-    location: 'Uzbekistan',
-    description: [
-      'Worked with 6-person frontend software team',
-      'Participated in sprint planning, code reviews, UI/UX discussions',
-      'Built responsive interfaces using React and Next.js',
-    ],
-  },
-  // TODO: Add new experience entry here when employed
-];
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Experience() {
+  const { t } = useLanguage();
+
+  const experiences = [
+    {
+      company: 'NovaBuild Tech',
+      role: t('experience.nova_role'),
+      period: t('experience.nova_period'),
+      location: t('experience.nova_location'),
+      description: [
+        t('experience.nova_desc1'),
+        t('experience.nova_desc2'),
+        t('experience.nova_desc3'),
+      ],
+    },
+    {
+      company: 'PageWave Solutions',
+      role: t('experience.page_role'),
+      period: t('experience.page_period'),
+      location: t('experience.page_location'),
+      description: [
+        t('experience.page_desc1'),
+        t('experience.page_desc2'),
+        t('experience.page_desc3'),
+      ],
+    },
+  ];
+  
   return (
     <section id="experience" className="py-20 md:py-32 relative bg-background/50">
       <div className="container mx-auto px-4">
@@ -43,7 +45,7 @@ export default function Experience() {
           <div className="flex items-center justify-center gap-4 mb-4">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-gold/50 to-gold/20" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-cream text-center">
-              Experience
+              {t('experience.title')}
             </h2>
             <div className="flex-1 h-px bg-gradient-to-l from-transparent via-gold/50 to-gold/20" />
           </div>
