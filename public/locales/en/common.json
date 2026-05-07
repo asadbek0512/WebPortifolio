@@ -43,6 +43,14 @@
     "zuhorbooks": {
       "shortDesc": "Online book platform with rich catalog and reader-focused UI",
       "fullDesc": "ZuhorBooks is an online book platform built with React. It offers a rich catalog of books organized by genre and category, with a clean reader-focused UI. Users can browse books, view detailed descriptions, and explore curated collections. The platform features smooth navigation, responsive layout for all screen sizes, and optimized performance."
+    },
+    "lifeos": {
+      "shortDesc": "Smart life management Telegram Mini App with tasks, habits, and prayer time tracking",
+      "fullDesc": "LifeOS is a smart life management platform that works as a Telegram Mini App. Users can register tasks and habits by section, check their daily completion rate, and systematically manage their lives. It starts via a Telegram bot and automatically fetches prayer times based on location. During onboarding, you set your name, language, and sections to get started right away. The platform supports 4 languages — Uzbek, Korean, Russian, and English — and offers both dark and light modes. As you complete daily tasks, your completion rate increases, and you can visually track your consistency through a monthly activity heatmap."
+    },
+    "royalempire": {
+      "shortDesc": "Cinematic portfolio site with 3D visuals, GSAP animations, and multilingual support",
+      "fullDesc": "Royal Empire Studio is a cinematic portfolio website built with Next.js 14 and TypeScript. Smooth and dynamic animation effects are implemented using GSAP and Framer Motion. Interactive 3D visual elements are applied through Three.js and React Three Fiber. A dark-toned cinematic design is achieved with Tailwind CSS with a responsive layout optimized for all devices. Supports Uzbek, Russian, and English via i18next, and includes a client inquiry form built with react-hook-form."
     }
   },
   "experience": {

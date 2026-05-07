@@ -30,7 +30,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const loadTranslations = async (locale: Locale) => {
     try {
-      const response = await fetch(`/locales/${locale}/common.json`);
+      const response = await fetch(`/locales/${locale}/common.json`, { cache: 'no-store' });
       const data = await response.json();
       setTranslations(data);
       setIsLoaded(true);

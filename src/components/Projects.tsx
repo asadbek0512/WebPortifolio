@@ -10,6 +10,7 @@ const projects = [
     id: 'zinfurn',
     title: 'Zinfurn',
     url: 'https://zinfurn.uz/',
+    imageFit: 'cover' as const,
     technologies: ['Next.js', 'Node.js', 'MongoDB', 'AI Chat', 'SEO'],
     images: [
       '/projects/zinfurn-1.jpg',
@@ -23,6 +24,7 @@ const projects = [
     id: 'zuhorbooks',
     title: 'ZuhorBooks',
     url: 'http://zuhorbooks.uz/',
+    imageFit: 'cover' as const,
     technologies: ['React', 'TypeScript', 'REST API', 'Responsive'],
     images: [
       '/projects/zuhorbooks-1.jpg',
@@ -31,6 +33,34 @@ const projects = [
     ],
     shortDesc: 'Online book platform with rich catalog and reader-focused UI',
     fullDesc: 'ZuhorBooks is an online book platform built with React. It offers a rich catalog of books organized by genre and category, with a clean reader-focused UI. Users can browse books, view detailed descriptions, and explore curated collections. The platform features smooth navigation, responsive layout for all screen sizes, and optimized performance.',
+  },
+  {
+    id: 'lifeos',
+    title: 'LifeOS',
+    url: 'https://t.me/lifeos_uz_bot',
+    imageFit: 'contain' as const,
+    technologies: ['Next.js', 'NestJS', 'Python', 'Telegram', 'MongoDB'],
+    images: [
+      '/projects/lifeos-1.jpg',
+      '/projects/lifeos-2.jpg',
+      '/projects/lifeos-4.jpg',
+    ],
+    shortDesc: 'Smart life management Telegram Mini App with tasks, habits, and prayer time tracking',
+    fullDesc: 'LifeOS is a smart life management platform that works as a Telegram Mini App. Users can register tasks and habits by section, check their daily completion rate, and systematically manage their lives. It starts via a Telegram bot and automatically fetches prayer times based on location. During onboarding, you set your name, language, and sections to get started right away. The platform supports 4 languages — Uzbek, Korean, Russian, and English — and offers both dark and light modes.',
+  },
+  {
+    id: 'royalempire',
+    title: 'Royal Empire Studio',
+    url: 'http://31.97.187.110:3003/',
+    imageFit: 'cover' as const,
+    technologies: ['Next.js', 'TypeScript', 'GSAP', 'Three.js', 'i18next'],
+    images: [
+      '/projects/royalempire-1.jpg',
+      '/projects/royalempire-2.jpg',
+      '/projects/royalempire-3.jpg',
+    ],
+    shortDesc: 'Cinematic portfolio site with 3D visuals, GSAP animations, and multilingual support',
+    fullDesc: 'Royal Empire Studio is a cinematic portfolio website built with Next.js 14 and TypeScript. Smooth and dynamic animation effects are implemented using GSAP and Framer Motion. Interactive 3D visual elements are applied through Three.js and React Three Fiber. A dark-toned cinematic design is achieved with Tailwind CSS with a responsive layout optimized for all devices. Supports Uzbek, Russian, and English via i18next, and includes a client inquiry form built with react-hook-form.',
   },
 ];
 
@@ -89,6 +119,11 @@ function ProjectCard({
 }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [failedImages, setFailedImages] = useState<Set<number>>(new Set());
+
+  const handleImageError = (idx: number) => {
+    setFailedImages(prev => new Set(prev).add(idx));
+  };
 
   return (
     <motion.div
@@ -115,12 +150,20 @@ function ProjectCard({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5, ease: 'easeInOut' }}
           >
-            <Image
-              src={project.images[currentImageIndex]}
-              alt={`${project.title} - Image ${currentImageIndex + 1}`}
-              fill
-              className="object-cover"
-            />
+            {failedImages.has(currentImageIndex) ? (
+              <div className="w-full h-full flex flex-col items-center justify-center bg-white/5 gap-3">
+                <span className="text-gold/40 text-5xl font-heading font-bold">{project.title[0]}</span>
+                <span className="text-cream/30 text-sm font-body">{project.title}</span>
+              </div>
+            ) : (
+              <Image
+                src={project.images[currentImageIndex]}
+                alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                fill
+                className={project.imageFit === 'contain' ? 'object-contain' : 'object-cover object-top'}
+                onError={() => handleImageError(currentImageIndex)}
+              />
+            )}
           </motion.div>
         </AnimatePresence>
 

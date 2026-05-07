@@ -43,6 +43,14 @@
     "zuhorbooks": {
       "shortDesc": "Boy katalog va o'quvchi uchun qulay UI bilan online kitob platformasi",
       "fullDesc": "ZuhorBooks - React da qurilgan online kitob platformasi. Janr va kategoriya bo'yicha tizimga solingan boy kitob katalogini, toza o'quvchi uchun qulay UI ni taklif qiladi. Foydalanuvchilar kitoblarni ko'rishlari, batafsil tavsiflarni o'qishlari va tanlangan kolleksiyalarni ko'rishlari mumkin. Platforma barcha ekran o'lchamlari uchun silliq navigatsiya, responsiv layout va optimallashtirilgan unumdorlikka ega."
+    },
+    "lifeos": {
+      "shortDesc": "Vazifalar, odatlar va namoz vaqtlarini kuzatuvchi aqlli Telegram Mini App",
+      "fullDesc": "LifeOS — Telegram Mini App sifatida ishlaydigan aqlli hayot boshqaruv platformasidir. Foydalanuvchilar bo'limlar bo'yicha vazifalar va odatlarni ro'yxatga olishi, kunlik bajarilish foizini kuzatishi va hayotini tartibli boshqarishi mumkin. Telegram bot orqali boshlanadi va joylashuv asosida namoz vaqtlarini avtomatik yuklaydi. Onboarding bosqichida ism, til va bo'limlarni sozlab, darhol foydalanish mumkin. Platforma o'zbek, koreys, rus va ingliz tillarini qo'llab-quvvatlaydi, qorong'u va yorug' rejimlarni taqdim etadi. Kunlik vazifalarni bajarish orqali bajarilish foizi oshib boradi va oylik faoliyat xaritasi orqali doimiylikni vizual kuzatish mumkin."
+    },
+    "royalempire": {
+      "shortDesc": "3D vizuallar, GSAP animatsiyalar va ko'p tilli qo'llab-quvvatlash bilan kinofilm uslubidagi portfolio sayt",
+      "fullDesc": "Royal Empire Studio — Next.js 14 va TypeScript asosida yaratilgan kinofilm uslubidagi portfolio saytdir. GSAP va Framer Motion yordamida silliq va dinamik animatsiya effektlari amalga oshirilgan. Three.js va React Three Fiber orqali saytga interaktiv 3D vizual elementlar qo'shilgan. Tailwind CSS bilan to'q rangli kinofilm uslubidagi dizayn yaratilgan va barcha qurilmalarda optimallashtirilgan responsiv layout amalga oshirilgan. i18next yordamida o'zbek, rus va ingliz tillarini qo'llab-quvvatlash ta'minlangan. react-hook-form yordamida mijoz murojaat formasi yaratilgan."
     }
   },
   "experience": {
