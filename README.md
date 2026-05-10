@@ -1,188 +1,89 @@
-# Asadbek Husanov (DONI) - Full Stack Developer Portfolio
+# Asadbek Khusanov — Portfolio
 
-A professional portfolio website built with Next.js 14, TypeScript, and modern web technologies.
+Personal portfolio website for Asadbek Khusanov, a Full Stack Developer based in Seoul, South Korea. Built with Next.js 14, 3D visuals, and smooth animations.
 
-## 🚀 Tech Stack
+## Tech Stack
 
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Animations:** Framer Motion, GSAP + ScrollTrigger
-- **3D Effects:** Three.js with React Three Fiber + Drei
-- **i18n:** next-intl (English / Korean)
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 14 (App Router) + TypeScript |
+| Styling | Tailwind CSS |
+| Animations | Framer Motion 11 + GSAP 3.12 |
+| 3D | Three.js + React Three Fiber + Drei |
+| Fonts | Cormorant Garamond + Space Mono |
+| i18n | Custom LanguageContext (EN, UZ, KR) |
+| Deploy | VPS + Nginx + PM2 |
 
-## 🎨 Design Features
+## Getting Started
 
-- **Color Scheme:**
-  - Background: Black (#080808)
-  - Accent: Gold (#C9A84C)
-  - Text: Cream (#F5F0E8)
+```bash
+git clone <repo-url>
+cd Portifolio
 
-- **Typography:**
-  - Headings: Cormorant Garamond
-  - Body/Code: Space Mono
+npm install
+npm run dev
+```
 
-- **Special Features:**
-  - Sticky navbar with scroll hide/show behavior
-  - Custom gold cursor (desktop only)
-  - Mobile hamburger menu with fullscreen overlay
-  - Three.js particle background
-  - GSAP scroll-triggered animations
-  - Bilingual support (EN/KO)
-  - Fully responsive design with mobile tabs for tech stack
+Open [http://localhost:3000](http://localhost:3000)
 
-## 📁 Project Structure
+## Features
+
+**Sections**
+- **Hero** — animated introduction with interactive 3D rotating code cube (desktop only)
+- **About** — personal background, location, and key statistics
+- **Tech Stack** — skills and technologies grid with icons
+- **Projects** — showcase of real-world projects (Zinfurn, ZuhorBooks, LifeOS, Solven) with live links and descriptions
+- **Experience** — work history and professional timeline
+- **Education** — academic background including Bucheon University, South Korea
+- **Contact** — contact form with social links (Email, Telegram, LinkedIn, GitHub, Instagram)
+
+**Design & UX**
+- Dark theme: `#080808` background, `#C9A84C` gold accent, `#F5F0E8` cream text
+- Animated particle background
+- Custom gold cursor on desktop
+- Smooth scroll navigation with fixed navbar that hides on scroll down
+- All animations triggered on scroll into view (Framer Motion `whileInView`)
+- 3D cube built with React Three Fiber — desktop only, hidden on mobile
+
+**Multilingual**
+- English, Uzbek, Korean
+- Language preference saved in `localStorage`
+- Instant switch with no page reload
+
+**Downloads**
+- Portfolio PDF
+- Resume PDF
+
+## Project Structure
 
 ```
 src/
 ├── app/
-│   ├── [locale]/
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   ├── globals.css
-│   └── layout.tsx
-├── components/
-│   ├── Navbar.tsx           # Sticky navbar with mobile menu
-│   ├── LanguageToggle.tsx   # EN/KO language switcher
-│   ├── Hero.tsx             # Hero with social icons & download buttons
-│   ├── About.tsx            # About Me section with stats
-│   ├── TechStack.tsx        # 3-column tech stack with icons
-│   ├── Projects.tsx         # Project cards with expandable descriptions
-│   ├── Experience.tsx       # Timeline experience section
-│   ├── Education.tsx        # Education section
-│   ├── Contact.tsx          # Contact links section
-│   └── ParticlesBackground.tsx
-├── i18n.ts
-└── messages/
-    ├── en.json
-    └── ko.json
+│   ├── page.tsx            # All sections assembled here
+│   └── globals.css
+├── components/             # One component per section
+│   ├── Hero.tsx
+│   ├── About.tsx
+│   ├── TechStack.tsx
+│   ├── Projects.tsx
+│   ├── Experience.tsx
+│   ├── Education.tsx
+│   ├── Contact.tsx
+│   ├── CodeCube.tsx        # 3D cube (dynamic import, SSR disabled)
+│   ├── ParticlesBackground.tsx
+│   └── CustomCursor.tsx
+└── contexts/
+    └── LanguageContext.tsx # useLanguage() hook
+public/
+├── locales/                # en/, uz/, kr/ translation JSON files
+├── images/                 # Profile, about, project screenshots
+└── files/                  # portfolio.pdf, resume.pdf
 ```
 
-## 🛠️ Getting Started
+## Deployment
 
-### Prerequisites
+VPS: built with `npm run build`, served via PM2 on port 5010 behind Nginx with SSL.
 
-- Node.js 18+ 
-- npm or yarn
+## Live
 
-### Installation
-
-1. Install dependencies:
-```bash
-npm install
-```
-
-2. Add your files:
-   - `public/profile.jpg` - Profile photo (512x512px recommended)
-   - `public/bucheon-logo.png` - University logo (optional)
-   - `public/projects/*.jpg` - Project screenshots
-   - `public/files/portfolio.pdf` - Portfolio PDF
-   - `public/files/resume.pdf` - Resume PDF
-
-3. Update contact info in `src/messages/en.json` and `src/messages/ko.json`:
-   - Email address
-   - Telegram username
-   - LinkedIn profile
-   - Instagram username
-
-4. Run the development server:
-```bash
-npm run dev
-```
-
-5. Open your browser:
-   - Root: http://localhost:6000 (redirects to /en)
-   - English: http://localhost:6000/en
-   - Korean: http://localhost:6000/ko
-
-## 🌐 Internationalization
-
-The site supports two languages with URL-based routing:
-- **English:** `/en`
-- **Korean:** `/ko`
-
-Language toggle is available in the top-right corner of the website.
-
-## 📱 Sections
-
-1. **Navbar** - Sticky, hides on scroll down, shows on scroll up, mobile hamburger menu
-2. **Hero** - Profile photo with spinning gold ring, social icons (Email, Telegram, LinkedIn, GitHub, Instagram), download buttons
-3. **About Me** - Introduction paragraph with animated stats grid
-4. **Tech Stack** - 3 columns (Frontend/Backend/DevOps) with icons, mobile tabs
-5. **Projects** - Slideshow cards with expandable descriptions (Zinfurn, ZuhorBooks)
-6. **Experience** - Timeline layout with 2 entries (NovaBuild Tech, PageWave Solutions)
-7. **Education** - Bucheon University card with logo
-8. **Contact** - Contact links (Email, GitHub, LinkedIn, Telegram)
-
-## 🎯 Customization
-
-### Update Personal Info
-Edit the message files:
-- `src/messages/en.json` - English content
-- `src/messages/ko.json` - Korean content
-
-### Add/Modify Projects
-Edit `src/components/Projects.tsx` and add corresponding images to `public/projects/`
-
-### Add Experience
-Edit `src/components/Experience.tsx` - there's a TODO comment where you can add new entries.
-
-### Change Colors
-Update `tailwind.config.js` color values in the `theme.extend.colors` section
-
-### Update Tech Stack
-Edit the `techStack` object in `src/components/TechStack.tsx`
-
-## 📄 Build & Deploy
-
-### Production Build
-```bash
-npm run build
-npm start
-```
-
-### Deploy to Vercel
-```bash
-vercel deploy
-```
-
-### Deploy to Other Platforms
-The site can be deployed to any platform that supports Next.js:
-- Netlify
-- AWS Amplify
-- Railway
-- Docker
-
-## 🔧 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm start` - Start production server
-- `npm run lint` - Run ESLint
-- `npm run type-check` - Run TypeScript type checking
-
-## 📝 Notes
-
-- The custom cursor only appears on desktop (screen width > 768px)
-- Three.js particles are disabled on mobile for performance
-- Tech stack shows as 3 columns on desktop, tabs on mobile
-- Navbar hides when scrolling down, shows when scrolling up
-- Images should be added to the `public/` folder before building
-- The site uses static generation (SSG) for optimal performance
-- All text content is bilingual (EN/KO) via next-intl
-
-## 📄 License
-
-MIT License - feel free to use this template for your own portfolio!
-
-## 👤 Author
-
-**Asadbek Husanov (DONI)**
-- Location: Seoul, Korea
-- University: Bucheon University
-- Visa: D-10
-- Status: Open to Work
-
----
-
-Built with ❤️ in Seoul, Korea
+[https://khusanovdev.uz](https://khusanovdev.uz)
