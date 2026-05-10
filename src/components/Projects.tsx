@@ -51,7 +51,7 @@ const projects = [
   {
     id: 'royalempire',
     title: 'Royal Empire Studio',
-    url: 'http://31.97.187.110:3003/',
+    url: 'https://royalempire.uz/',
     imageFit: 'cover' as const,
     technologies: ['Next.js', 'TypeScript', 'GSAP', 'Three.js', 'i18next'],
     images: [
