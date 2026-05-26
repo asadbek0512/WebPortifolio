@@ -12,22 +12,7 @@ export default function Experience() {
       role: t('experience.nova_role'),
       period: t('experience.nova_period'),
       location: t('experience.nova_location'),
-      description: [
-        t('experience.nova_desc1'),
-        t('experience.nova_desc2'),
-        t('experience.nova_desc3'),
-      ],
-    },
-    {
-      company: 'PageWave Solutions',
-      role: t('experience.page_role'),
-      period: t('experience.page_period'),
-      location: t('experience.page_location'),
-      description: [
-        t('experience.page_desc1'),
-        t('experience.page_desc2'),
-        t('experience.page_desc3'),
-      ],
+      description: Array.from({ length: 14 }, (_, i) => t(`experience.nova_desc${i + 1}`)).filter(Boolean),
     },
   ];
   
