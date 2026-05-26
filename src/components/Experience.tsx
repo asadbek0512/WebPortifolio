@@ -36,71 +36,61 @@ export default function Experience() {
           </div>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="max-w-4xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold/0 via-gold/50 to-gold/0 md:-translate-x-1/2" />
-
-          {/* Experience items */}
-          <div className="space-y-12">
-            {experiences.map((exp, index) => (
+        {/* Timeline replaced with centered layout for single experience */}
+        <div className="max-w-5xl mx-auto">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.company}
+              className="relative"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6 }}
+            >
+              {/* Main Card */}
               <motion.div
-                key={exp.company}
-                className={`relative flex flex-col md:flex-row gap-8 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="p-8 md:p-12 rounded-2xl bg-background/80 border border-white/10 hover:border-gold/30 transition-all duration-500 backdrop-blur-sm"
+                whileHover={{
+                  y: -5,
+                  boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5), 0 0 20px rgba(201, 168, 76, 0.1)',
+                }}
               >
-                {/* Timeline dot */}
-                <div className="absolute left-4 md:left-1/2 top-0 w-3 h-3 rounded-full bg-gold transform md:-translate-x-1/2 -translate-x-1/2 shadow-gold-glow z-10" />
-
-                {/* Content */}
-                <div className={`flex-1 pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:text-left'}`}>
-                  <motion.div
-                    className="p-6 rounded-xl bg-background border border-white/5 hover:border-gold/30 transition-all duration-300"
-                    whileHover={{
-                      y: -5,
-                      boxShadow: '0 10px 40px rgba(201, 168, 76, 0.2)',
-                    }}
-                  >
-                    {/* Period */}
-                    <div className="text-gold font-body text-sm mb-2">
+                {/* Header: Role, Company, Period */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 border-b border-white/5 pb-8">
+                  <div>
+                    <div className="text-gold font-body text-sm font-medium tracking-widest uppercase mb-3">
                       {exp.period}
                     </div>
-                    
-                    {/* Role */}
-                    <h3 className="text-xl font-heading font-bold text-cream mb-1">
+                    <h3 className="text-3xl md:text-5xl font-heading font-bold text-cream mb-2">
                       {exp.role}
                     </h3>
-                    
-                    {/* Company & Location */}
-                    <div className="text-cream/60 font-body text-sm mb-4">
-                      {exp.company} • {exp.location}
+                    <div className="text-xl text-cream/60 font-body">
+                      <span className="text-gold font-bold">{exp.company}</span> • {exp.location}
                     </div>
-                    
-                    {/* Description */}
-                    <ul className={`space-y-2 ${index % 2 === 0 ? 'md:space-y-reverse' : ''}`}>
-                      {exp.description.map((item, i) => (
-                        <li
-                          key={i}
-                          className="text-cream/70 font-body text-sm flex items-start gap-2"
-                        >
-                          <span className="text-gold mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </motion.div>
+                  </div>
                 </div>
-
-                {/* Spacer for alternating layout */}
-                <div className="flex-1 hidden md:block" />
+                
+                {/* Description Grid */}
+                <div className="grid md:grid-cols-2 gap-x-12 gap-y-6">
+                  {exp.description.map((item, i) => (
+                    <motion.div
+                      key={i}
+                      className="group flex items-start gap-4"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: i * 0.05 }}
+                    >
+                      <div className="mt-1.5 flex-shrink-0 w-2 h-2 rounded-full bg-gold/50 group-hover:bg-gold shadow-[0_0_8px_rgba(201,168,76,0.3)] transition-all duration-300" />
+                      <p className="text-cream/70 font-body text-sm md:text-base leading-relaxed group-hover:text-cream transition-colors duration-300">
+                        {item}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
-            ))}
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
