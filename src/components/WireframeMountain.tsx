@@ -55,6 +55,12 @@ const CAM_B = new THREE.Vector3(26, 16, 34);  // oxiri: yon va balandroqdan
 const LOOK_A = new THREE.Vector3(-3, 13, -5);
 const LOOK_B = new THREE.Vector3(-3, 9, -9);
 
+// MOBIL (portret) — orqaroqdan, balandroqdan => uchburchaklar mayda va nozik
+const CAM_A_M = new THREE.Vector3(0, 17, 84);
+const CAM_B_M = new THREE.Vector3(22, 24, 64);
+const LOOK_A_M = new THREE.Vector3(-3, 12, -5);
+const LOOK_B_M = new THREE.Vector3(-3, 9, -9);
+
 function Terrain() {
   const mesh = useRef<THREE.Group>(null);
   const scroll = useRef(0);
@@ -63,13 +69,18 @@ function Terrain() {
   const mouseS = useRef({ x: 0, y: 0 });  // silliqlangan mouse
   const { camera } = useThree();
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const camA = isMobile ? CAM_A_M : CAM_A;
+  const camB = isMobile ? CAM_B_M : CAM_B;
+  const lookA = isMobile ? LOOK_A_M : LOOK_A;
+  const lookB = isMobile ? LOOK_B_M : LOOK_B;
+
   const pos = useMemo(() => new THREE.Vector3(), []);
   const look = useMemo(() => new THREE.Vector3(), []);
 
   const geometry = useMemo(() => {
-    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     const size = 100;
-    const seg = isMobile ? 120 : 200; // mobilda yengilroq (silliq ishlashi uchun)
+    const seg = isMobile ? 150 : 200; // mobilda nozikroq, lekin yengil
     const g = new THREE.PlaneGeometry(size, size, seg, seg);
     const p = g.attributes.position;
     // cho'qqi markazi biroz suriladi => tabiiy, simmetrik emas
@@ -131,12 +142,12 @@ function Terrain() {
     const mx = mouseS.current.x, my = mouseS.current.y;
 
     // A => B kamera sayohati (scroll) + mouse parallaks
-    pos.lerpVectors(CAM_A, CAM_B, s);
+    pos.lerpVectors(camA, camB, s);
     pos.x += mx * 6 + Math.sin(t * 0.15) * 0.6; // mouse + yengil tebranish
     pos.y += -my * 3 + Math.sin(t * 0.22) * 0.3;
     camera.position.copy(pos);
 
-    look.lerpVectors(LOOK_A, LOOK_B, s);
+    look.lerpVectors(lookA, lookB, s);
     camera.lookAt(look);
 
     // tog'ni mouse bilan aylantirish (silliq) + sezilmas nafas
@@ -156,7 +167,7 @@ function Terrain() {
         </mesh>
         {/* oltin wireframe */}
         <mesh geometry={geometry}>
-          <meshBasicMaterial color="#C9A84C" wireframe transparent opacity={0.55} />
+          <meshBasicMaterial color="#C9A84C" wireframe transparent opacity={isMobile ? 0.38 : 0.55} />
         </mesh>
       </group>
     </group>
