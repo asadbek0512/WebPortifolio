@@ -71,12 +71,13 @@ export function CustomCursor() {
     <>
       {/* Main cursor dot */}
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 rounded-full bg-gold pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 w-4 h-4 rounded-full bg-gold pointer-events-none z-[9999]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
           translateX: '-50%',
           translateY: '-50%',
+          boxShadow: '0 0 6px 1px rgba(0,0,0,0.5)',
         }}
       />
       

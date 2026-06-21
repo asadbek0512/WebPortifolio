@@ -19,6 +19,7 @@ module.exports = {
       fontFamily: {
         heading: ['var(--font-cormorant)', 'Georgia', 'serif'],
         body: ['var(--font-space-mono)', 'monospace'],
+        display: ['var(--font-anton)', 'Impact', 'sans-serif'],
       },
       cursor: {
         gold: 'none',

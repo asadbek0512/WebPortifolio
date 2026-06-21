@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Space_Mono } from 'next/font/google';
+import { Cormorant_Garamond, Space_Mono, Anton } from 'next/font/google';
 import { CustomCursor } from '@/components/CustomCursor';
 import Providers from '@/components/Providers';
 import './globals.css';
@@ -15,6 +15,13 @@ const spaceMono = Space_Mono({
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--font-space-mono',
+  display: 'swap',
+});
+
+const anton = Anton({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-anton',
   display: 'swap',
 });
 
@@ -39,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${spaceMono.variable}`}>
+    <html lang="en" className={`${cormorant.variable} ${spaceMono.variable} ${anton.variable}`}>
       <body className="font-body bg-background text-cream antialiased">
         <CustomCursor />
         <Providers>{children}</Providers>

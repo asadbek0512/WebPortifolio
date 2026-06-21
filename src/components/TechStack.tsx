@@ -317,7 +317,9 @@ export default function TechStack() {
 
   return (
     <section id="stack" ref={sectionRef} className="py-20 md:py-32 relative">
-      <div className="container mx-auto px-4">
+      {/* blur panel — tog' fonidan ozgina ajralib tursin (yengil) */}
+      <div className="absolute inset-0 bg-[#0b0a0c]/25 backdrop-blur-sm pointer-events-none" />
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Label */}
         <motion.div
           className="mb-16"

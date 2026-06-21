@@ -1,15 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
-
-const ParticlesBackground = dynamic(() => import('./ParticlesBackground'), {
-  ssr: false,
-});
-
-const CodeCube = dynamic(() => import('./CodeCube'), { ssr: false });
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -85,124 +78,129 @@ export default function Hero() {
     },
   };
 
+  const cutCorner = {
+    clipPath:
+      'polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)',
+  };
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <ParticlesBackground />
+    <section
+      id="home"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
+    >
+      {/* Top label (pixila uslubi) */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+        className="absolute top-24 md:top-28 left-1/2 -translate-x-1/2 text-[10px] md:text-[11px] tracking-[0.55em] text-gold/70 font-body uppercase"
+      >
+        Full-Stack Developer
+      </motion.div>
 
-      {/* Desktop: Two columns | Mobile: Single column */}
-      <div className="container mx-auto px-4 py-20">
-        <div className="grid lg:grid-cols-[55%_45%] gap-8 lg:gap-0 items-center min-h-[600px]">
-          
-          {/* LEFT: Hero Content (55%) */}
-          <div className="flex items-center justify-center">
-            <motion.div
-              className="flex flex-col items-center"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
+      <motion.div
+        className="flex flex-col items-center text-center"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Profile photo — kichik, nafis */}
+        <motion.div variants={itemVariants} className="relative mb-6 md:mb-8">
+          <div className="absolute -inset-3 rounded-full border border-gold/20 animate-spin-slow" style={{ animationDuration: '14s' }} />
+          <div className="relative w-[104px] h-[104px] md:w-[120px] md:h-[120px] rounded-full overflow-hidden border border-gold/50 shadow-gold-glow">
+            <Image
+              src="/profile.jpg"
+              alt="Khusanov Asadbek"
+              fill
+              className="object-cover"
+              style={{ objectPosition: 'center 15%' }}
+              priority
+            />
+          </div>
+        </motion.div>
+
+        {/* ULKAN ism — Anton, 3D chuqurlik */}
+        <motion.h1
+          variants={itemVariants}
+          className="font-display leading-[0.82] tracking-tight select-none"
+        >
+          <span
+            className="block text-[clamp(2.2rem,7vw,6rem)] text-cream"
+            style={{ textShadow: '0 2px 0 rgba(0,0,0,0.6), 0 14px 50px rgba(201,168,76,0.22)' }}
+          >
+            KHUSANOV
+          </span>
+          <span
+            className="block text-[clamp(2.2rem,7vw,6rem)] bg-gradient-to-b from-[#F3E2A8] via-gold to-gold-dark bg-clip-text text-transparent"
+            style={{ filter: 'drop-shadow(0 8px 28px rgba(201,168,76,0.3))' }}
+          >
+            ASADBEK
+          </span>
+        </motion.h1>
+
+        {/* Divider + subtitle */}
+        <motion.div variants={itemVariants} className="flex items-center gap-4 mt-6 mb-8">
+          <span className="h-px w-10 bg-gold/40" />
+          <p className="text-xs md:text-sm tracking-[0.3em] text-cream/70 font-body uppercase">
+            {t('hero.subtitle')}
+          </p>
+          <span className="h-px w-10 bg-gold/40" />
+        </motion.div>
+
+        {/* Tugmalar — burchakli (cut-corner) */}
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4 mb-9">
+          <motion.a
+            href="/files/resume.pdf"
+            download
+            style={cutCorner}
+            className="group flex items-center gap-3 px-8 py-3.5 bg-gold text-background font-body font-bold uppercase tracking-wider text-sm hover:bg-gold-light transition-colors duration-300"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <svg className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            {t('hero.download_resume')}
+          </motion.a>
+
+          <motion.a
+            href="/files/portfolio.pdf"
+            download
+            style={cutCorner}
+            className="group flex items-center gap-3 px-8 py-3.5 border border-gold/50 text-gold font-body font-bold uppercase tracking-wider text-sm hover:bg-gold/10 transition-colors duration-300"
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
+          >
+            <svg className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            {t('hero.download_portfolio')}
+          </motion.a>
+        </motion.div>
+
+        {/* Social */}
+        <motion.div variants={itemVariants} className="flex items-center gap-3">
+          {socialLinks.map((social) => (
+            <a
+              key={social.name}
+              href={social.href}
+              target={social.name !== 'email' ? '_blank' : undefined}
+              rel={social.name !== 'email' ? 'noopener noreferrer' : undefined}
+              className="flex items-center justify-center w-10 h-10 border border-gold/30 text-gold/80 hover:text-background hover:bg-gold hover:border-gold transition-all duration-300"
+              style={cutCorner}
             >
-              {/* Profile Photo */}
-              <motion.div
-                className="relative mb-8"
-                variants={itemVariants}
-              >
-                <div className="absolute inset-0 rounded-full border-2 border-gold/30 animate-spin-slow" />
-                <div className="absolute -inset-4 rounded-full border border-gold/20 animate-spin-slow" style={{ animationDirection: 'reverse', animationDuration: '12s' }} />
+              {social.icon}
+            </a>
+          ))}
+        </motion.div>
+      </motion.div>
 
-                <div className="relative w-[180px] h-[180px] rounded-full overflow-hidden border-4 border-gold/50 shadow-gold-glow">
-                  <Image
-                    src="/profile.jpg"
-                    alt="Khusanov Asadbek"
-                    fill
-                    className="object-cover"
-                    style={{ objectPosition: 'center 15%' }}
-                    priority
-                  />
-                </div>
-
-                <div className="absolute inset-0 rounded-full bg-gold/10 blur-xl animate-pulse" />
-              </motion.div>
-
-              {/* Name */}
-              <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-center mb-3"
-                variants={itemVariants}
-              >
-                <span className="text-cream">Khusanov</span>{' '}
-                <span className="text-gold">Asadbek</span>
-              </motion.h1>
-
-              {/* Subtitle */}
-              <motion.p
-                className="text-lg sm:text-xl md:text-2xl text-cream/80 font-body mb-8"
-                variants={itemVariants}
-              >
-                {t('hero.subtitle')}
-              </motion.p>
-
-              {/* Social Icons */}
-              <motion.div
-                className="flex items-center gap-4 mb-10"
-                variants={itemVariants}
-              >
-                {socialLinks.map((social, index) => (
-                  <motion.a
-                    key={social.name}
-                    href={social.href}
-                    target={social.name !== 'email' ? '_blank' : undefined}
-                    rel={social.name !== 'email' ? 'noopener noreferrer' : undefined}
-                    className="flex items-center justify-center w-12 h-12 rounded-full border-2 border-gold/50 text-gold hover:bg-gold hover:text-background transition-all duration-300"
-                    initial={{ opacity: 0, scale: 0 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.5 + index * 0.1 }}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {social.icon}
-                  </motion.a>
-                ))}
-              </motion.div>
-
-              {/* Download Buttons */}
-              <motion.div
-                className="flex flex-col sm:flex-row items-center gap-4"
-                variants={itemVariants}
-              >
-                <motion.a
-                  href="/files/portfolio.pdf"
-                  download
-                  className="group flex items-center gap-3 px-8 py-3.5 rounded-full border-2 border-gold/50 text-gold font-body font-semibold hover:bg-gold/10 transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <svg className="w-5 h-5 transition-transform group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  {t('hero.download_portfolio')}
-                </motion.a>
-
-                <motion.a
-                  href="/files/resume.pdf"
-                  download
-                  className="group flex items-center gap-3 px-8 py-3.5 rounded-full bg-gold text-background font-body font-semibold hover:bg-gold-light transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <svg className="w-5 h-5 transition-transform group-hover:-translate-y-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  {t('hero.download_resume')}
-                </motion.a>
-              </motion.div>
-            </motion.div>
-          </div>
-
-          {/* RIGHT: Code Cube (45%) - Desktop only */}
-          <div className="hidden lg:block relative w-full h-[600px]">
-            <CodeCube />
-          </div>
-
-        </div>
+      {/* Burchak yorliqlari (pixila uslubi) */}
+      <div className="absolute bottom-8 left-8 text-[10px] tracking-[0.3em] text-cream/40 uppercase font-body hidden md:block">
+        &lt;/&gt; Web · Mobile · API
+      </div>
+      <div className="absolute bottom-8 right-8 text-[10px] tracking-[0.3em] text-cream/40 uppercase font-body hidden md:block">
+        Seoul — Korea
       </div>
     </section>
   );
