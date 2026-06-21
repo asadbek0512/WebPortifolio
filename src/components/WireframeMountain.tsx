@@ -79,8 +79,8 @@ function Terrain() {
   const look = useMemo(() => new THREE.Vector3(), []);
 
   const geometry = useMemo(() => {
-    const size = 100;
-    const seg = isMobile ? 150 : 200; // mobilda nozikroq, lekin yengil
+    const size = 160; // katta => chetlari kadr/fog tashqarisida, kesilgan tagi ko'rinmaydi
+    const seg = isMobile ? 160 : 220; // zichlik saqlanadi (katta size uchun)
     const g = new THREE.PlaneGeometry(size, size, seg, seg);
     const p = g.attributes.position;
     // cho'qqi markazi biroz suriladi => tabiiy, simmetrik emas
@@ -141,20 +141,21 @@ function Terrain() {
     mouseS.current.y += (mouse.current.y - mouseS.current.y) * 0.04;
     const mx = mouseS.current.x, my = mouseS.current.y;
 
-    // A => B kamera sayohati (scroll) + mouse parallaks
+    // A => B kamera sayohati (scroll) + mouse parallaks + sekin kino-tebranish
     pos.lerpVectors(camA, camB, s);
-    pos.x += mx * 6 + Math.sin(t * 0.15) * 0.6; // mouse + yengil tebranish
-    pos.y += -my * 3 + Math.sin(t * 0.22) * 0.3;
+    pos.x += mx * 6 + Math.sin(t * 0.11) * 1.1;  // yumshoq lateral drift
+    pos.y += -my * 3 + Math.sin(t * 0.17) * 0.5; // yengil vertikal bob
     camera.position.copy(pos);
 
     look.lerpVectors(lookA, lookB, s);
+    look.x += Math.sin(t * 0.09) * 0.5; // nishon ham biroz suriladi => tirik
     camera.lookAt(look);
 
-    // tog'ni mouse bilan aylantirish (silliq) + sezilmas nafas
+    // tog': avtomatik sekin nafis aylanish (mobilda ham jonli) + mouse
     if (mesh.current) {
-      mesh.current.rotation.y = mx * 0.35 + Math.sin(t * 0.05) * 0.04;
-      mesh.current.rotation.x = my * 0.12;
-      mesh.current.rotation.z = Math.sin(t * 0.1) * 0.012;
+      mesh.current.rotation.y = mx * 0.3 + Math.sin(t * 0.06) * 0.08;
+      mesh.current.rotation.x = my * 0.1;
+      mesh.current.rotation.z = Math.sin(t * 0.08) * 0.02;
     }
   });
 
@@ -167,7 +168,7 @@ function Terrain() {
         </mesh>
         {/* oltin wireframe */}
         <mesh geometry={geometry}>
-          <meshBasicMaterial color="#C9A84C" wireframe transparent opacity={isMobile ? 0.38 : 0.55} />
+          <meshBasicMaterial color="#C9A84C" wireframe transparent opacity={isMobile ? 0.3 : 0.45} />
         </mesh>
       </group>
     </group>
@@ -181,8 +182,9 @@ export default function WireframeMountain() {
       className="fixed inset-0 -z-10"
       style={{
         background:
-          'radial-gradient(ellipse 130% 70% at 50% 52%, rgba(214,176,90,0.40), rgba(120,80,30,0.12) 38%, transparent 62%),' +
-          'linear-gradient(to bottom, #0b0a0c 0%, #1d1407 42%, #0c0905 72%, #050505 100%)',
+          // yumshoq iliq porlash faqat cho'qqi orqasida (yuqorida), juda sariq emas
+          'radial-gradient(ellipse 90% 55% at 50% 34%, rgba(201,168,76,0.16), transparent 58%),' +
+          'linear-gradient(to bottom, #0a0908 0%, #0d0b07 46%, #080705 78%, #050403 100%)',
       }}
     >
       <Canvas
@@ -190,9 +192,20 @@ export default function WireframeMountain() {
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         dpr={isMobile ? [1, 1.5] : [1, 2]}
       >
-        <fog attach="fog" args={['#0c0905', 34, 100]} />
+        <fog attach="fog" args={['#070605', 38, 108]} />
         <Terrain />
       </Canvas>
+
+      {/* pastki fade — mesh chetini yashiradi + vignette (professional) */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none"
+        style={{ background: 'linear-gradient(to top, #050403 8%, rgba(5,4,3,0.7) 35%, transparent 100%)' }}
+      />
+      {/* yon vignette — chetlardagi chiziqlarni yumshatadi */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 75% 80% at 50% 45%, transparent 55%, rgba(5,4,3,0.55) 100%)' }}
+      />
     </div>
   );
 }
