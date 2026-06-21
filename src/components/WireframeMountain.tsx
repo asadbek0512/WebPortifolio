@@ -67,6 +67,12 @@ function Terrain() {
   const cur = useRef(0);
   const mouse = useRef({ x: 0, y: 0 });   // xom mouse pozitsiyasi (-1..1)
   const mouseS = useRef({ x: 0, y: 0 });  // silliqlangan mouse
+  // drag-to-rotate (bosib ushlab 360° aylantirish)
+  const drag = useRef(false);
+  const last = useRef({ x: 0, y: 0 });
+  const yaw = useRef(0);       // gorizontal burchak (cheksiz => to'liq 360°)
+  const yawVel = useRef(0);    // inersiya tezligi
+  const pitch = useRef(0);     // vertikal egilish (cheklangan)
   const { camera } = useThree();
 
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
@@ -114,18 +120,42 @@ function Terrain() {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       scroll.current = max > 0 ? window.scrollY / max : 0;
     };
-    const onMouse = (e: MouseEvent) => {
+    const onMove = (e: PointerEvent) => {
       mouse.current.x = (e.clientX / window.innerWidth) * 2 - 1;
       mouse.current.y = (e.clientY / window.innerHeight) * 2 - 1;
+      if (drag.current) {
+        const dx = e.clientX - last.current.x;
+        const dy = e.clientY - last.current.y;
+        last.current.x = e.clientX;
+        last.current.y = e.clientY;
+        const k = 0.006;
+        yaw.current += dx * k;            // gorizontal => 360° aylanish
+        yawVel.current = dx * k;          // qo'yib yuborilganda inersiya davom etadi
+        pitch.current = THREE.MathUtils.clamp(pitch.current + dy * k * 0.6, -0.35, 0.5);
+      }
     };
+    const onDown = (e: PointerEvent) => {
+      drag.current = true;
+      last.current.x = e.clientX;
+      last.current.y = e.clientY;
+      yawVel.current = 0;
+    };
+    const onUp = () => { drag.current = false; };
+
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-    window.addEventListener('mousemove', onMouse, { passive: true });
+    window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerdown', onDown, { passive: true });
+    window.addEventListener('pointerup', onUp, { passive: true });
+    window.addEventListener('pointercancel', onUp, { passive: true });
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
-      window.removeEventListener('mousemove', onMouse);
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('pointerup', onUp);
+      window.removeEventListener('pointercancel', onUp);
     };
   }, []);
 
@@ -151,11 +181,17 @@ function Terrain() {
     look.x += Math.sin(t * 0.09) * 0.5; // nishon ham biroz suriladi => tirik
     camera.lookAt(look);
 
-    // tog': avtomatik sekin nafis aylanish (mobilda ham jonli) + mouse
+    // drag inersiyasi: qo'yib yuborilgach sekin to'xtaydi
+    if (!drag.current) {
+      yaw.current += yawVel.current;
+      yawVel.current *= 0.94;
+    }
+
+    // tog': drag bilan 360° aylanish + avtomatik nafis drift (mobilda ham jonli)
     if (mesh.current) {
-      mesh.current.rotation.y = mx * 0.3 + Math.sin(t * 0.06) * 0.08;
-      mesh.current.rotation.x = my * 0.1;
-      mesh.current.rotation.z = Math.sin(t * 0.08) * 0.02;
+      mesh.current.rotation.y = yaw.current + Math.sin(t * 0.06) * 0.06;
+      mesh.current.rotation.x = pitch.current + my * 0.05;
+      mesh.current.rotation.z = Math.sin(t * 0.08) * 0.015;
     }
   });
 
