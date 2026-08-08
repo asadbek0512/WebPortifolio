@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, Space_Mono, Anton } from 'next/font/google';
-import { CustomCursor } from '@/components/CustomCursor';
 import Providers from '@/components/Providers';
 import './globals.css';
 
@@ -48,7 +47,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${spaceMono.variable} ${anton.variable}`}>
       <body className="font-body bg-background text-cream antialiased">
-        <CustomCursor />
         <Providers>{children}</Providers>
       </body>
     </html>
