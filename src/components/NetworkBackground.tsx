@@ -4,12 +4,19 @@ import { useEffect, useRef } from 'react';
 
 const PARTICLE_COUNT = 200;
 const LINK_DISTANCE = 175;
+// mobil: kam nuqta, qisqa ulanish, xiraroq chiziq — aks holda to'r oqarib ketadi
+const MOBILE_BREAKPOINT = 768;
+const MOBILE_PARTICLE_RATIO = 0.3;
+const MOBILE_LINK_DISTANCE = 105;
+const MOBILE_LINE_ALPHA = 0.18;
+const LINE_ALPHA = 0.32;
 const PARTICLE_SPEED = 0.12;
 const MOUSE_RADIUS = 150;
 const MOUSE_PUSH = 0.004;
 const RETURN_FORCE = 0.05;
 const MAX_VELOCITY = 0.5;
 const DOT_COLOR = 'rgba(255,255,255,0.5)';
+const MOBILE_DOT_COLOR = 'rgba(255,255,255,0.32)';
 const LINE_COLOR = 'rgba(255,255,255,';
 const MOUSE_LINE_COLOR = 'rgba(201,168,76,';
 // sichqoncha ortidan butun tarmoq sekin suriladi (parallax)
@@ -43,8 +50,12 @@ export default function NetworkBackground() {
     const mouse = { x: 0, y: 0, active: false };
     const parallax = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
+    const isMobile = () => width < MOBILE_BREAKPOINT;
+
     const createParticles = () => {
-      const count = width < 768 ? Math.round(PARTICLE_COUNT * 0.45) : PARTICLE_COUNT;
+      const count = isMobile()
+        ? Math.round(PARTICLE_COUNT * MOBILE_PARTICLE_RATIO)
+        : PARTICLE_COUNT;
       particles = Array.from({ length: count }, () => {
         const vx = (Math.random() - 0.5) * PARTICLE_SPEED;
         const vy = (Math.random() - 0.5) * PARTICLE_SPEED;
@@ -124,8 +135,10 @@ export default function NetworkBackground() {
           const dx = a.x - b.x;
           const dy = a.y - b.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < LINK_DISTANCE) {
-            const opacity = (1 - dist / LINK_DISTANCE) * 0.32;
+          const linkDistance = isMobile() ? MOBILE_LINK_DISTANCE : LINK_DISTANCE;
+          if (dist < linkDistance) {
+            const alpha = isMobile() ? MOBILE_LINE_ALPHA : LINE_ALPHA;
+            const opacity = (1 - dist / linkDistance) * alpha;
             ctx.strokeStyle = `${LINE_COLOR}${opacity})`;
             ctx.lineWidth = 0.9;
             ctx.beginPath();
@@ -155,8 +168,8 @@ export default function NetworkBackground() {
       }
 
       for (const p of particles) {
-        let radius = 1.4;
-        let color = DOT_COLOR;
+        let radius = isMobile() ? 1.1 : 1.4;
+        let color = isMobile() ? MOBILE_DOT_COLOR : DOT_COLOR;
         if (mouse.active) {
           const dx = p.x - mouse.x;
           const dy = p.y - mouse.y;

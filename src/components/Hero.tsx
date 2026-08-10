@@ -104,6 +104,27 @@ export default function Hero() {
         initial="hidden"
         animate="visible"
       >
+        {/* Mobil: tepada dumaloq portret (desktopda o'ng ustundagi portret ishlaydi) */}
+        <motion.div
+          variants={itemVariants}
+          className="md:hidden relative mb-8 w-[190px] h-[190px]"
+        >
+          <div
+            className="absolute -inset-6 rounded-full blur-2xl pointer-events-none"
+            style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.18), transparent 70%)' }}
+          />
+          <div className="relative w-full h-full rounded-full overflow-hidden border border-gold/35 bg-card">
+            <Image
+              src="/profile-round.jpg"
+              alt="Khusanov Asadbek"
+              fill
+              sizes="190px"
+              className="object-cover"
+              priority
+            />
+          </div>
+        </motion.div>
+
         <motion.p
           variants={itemVariants}
           className="text-[12px] md:text-[13px] tracking-[0.55em] text-gold/70 font-body uppercase mb-6"
