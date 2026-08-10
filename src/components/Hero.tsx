@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
+import NetworkBackground from '@/components/NetworkBackground';
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -83,41 +84,32 @@ export default function Hero() {
       'polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)',
   };
 
+  // portret uchun — tepa-chap va past-o'ng burchaklar ancha qiya
+  const portraitCut = {
+    clipPath:
+      'polygon(72px 0, 100% 0, 100% calc(100% - 72px), calc(100% - 72px) 100%, 0 100%, 0 72px)',
+  };
+
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
+      className="relative min-h-screen flex items-center overflow-hidden px-6 md:px-12 lg:px-20 pt-28 pb-16"
     >
-      {/* Top label (pixila uslubi) */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.8 }}
-        className="absolute top-24 md:top-28 left-1/2 -translate-x-1/2 text-[10px] md:text-[11px] tracking-[0.55em] text-gold/70 font-body uppercase"
-      >
-        Full-Stack Developer
-      </motion.div>
+      <NetworkBackground />
 
+      <div className="relative z-10 max-w-7xl mx-auto w-full grid md:grid-cols-[1fr_auto] gap-6 lg:gap-8 items-center">
       <motion.div
-        className="flex flex-col items-center text-center"
+        className="flex flex-col items-center text-center md:items-start md:text-left"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Profile photo — kichik, nafis */}
-        <motion.div variants={itemVariants} className="relative mb-6 md:mb-8">
-          <div className="absolute -inset-3 rounded-full border border-gold/20 animate-spin-slow" style={{ animationDuration: '14s' }} />
-          <div className="relative w-[104px] h-[104px] md:w-[120px] md:h-[120px] rounded-full overflow-hidden border border-gold/50 shadow-gold-glow">
-            <Image
-              src="/profile.jpg"
-              alt="Khusanov Asadbek"
-              fill
-              className="object-cover"
-              style={{ objectPosition: 'center 15%' }}
-              priority
-            />
-          </div>
-        </motion.div>
+        <motion.p
+          variants={itemVariants}
+          className="text-[12px] md:text-[13px] tracking-[0.55em] text-gold/70 font-body uppercase mb-6"
+        >
+          Full-Stack Developer
+        </motion.p>
 
         {/* ULKAN ism — Anton, 3D chuqurlik */}
         <motion.h1
@@ -125,13 +117,13 @@ export default function Hero() {
           className="font-display leading-[0.82] tracking-tight select-none"
         >
           <span
-            className="block text-[clamp(2.2rem,7vw,6rem)] text-cream"
+            className="block text-[clamp(2.6rem,6vw,5.2rem)] text-cream"
             style={{ textShadow: '0 2px 0 rgba(0,0,0,0.6), 0 14px 50px rgba(201,168,76,0.22)' }}
           >
             KHUSANOV
           </span>
           <span
-            className="block text-[clamp(2.2rem,7vw,6rem)] bg-gradient-to-b from-[#F3E2A8] via-gold to-gold-dark bg-clip-text text-transparent"
+            className="block text-[clamp(2.6rem,6vw,5.2rem)] bg-gradient-to-b from-[#F3E2A8] via-gold to-gold-dark bg-clip-text text-transparent"
             style={{ filter: 'drop-shadow(0 8px 28px rgba(201,168,76,0.3))' }}
           >
             ASADBEK
@@ -141,11 +133,18 @@ export default function Hero() {
         {/* Divider + subtitle */}
         <motion.div variants={itemVariants} className="flex items-center gap-4 mt-6 mb-8">
           <span className="h-px w-10 bg-gold/40" />
-          <p className="text-xs md:text-sm tracking-[0.3em] text-cream/70 font-body uppercase">
+          <p className="text-sm md:text-base tracking-[0.3em] text-cream/70 font-body uppercase">
             {t('hero.subtitle')}
           </p>
-          <span className="h-px w-10 bg-gold/40" />
+          <span className="h-px w-10 bg-gold/40 md:hidden" />
         </motion.div>
+
+        <motion.p
+          variants={itemVariants}
+          className="max-w-lg text-muted font-body text-[15px] leading-relaxed mb-9"
+        >
+          {t('about.description').slice(0, 180)}…
+        </motion.p>
 
         {/* Tugmalar — burchakli (cut-corner) */}
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4 mb-9">
@@ -194,6 +193,48 @@ export default function Hero() {
           ))}
         </motion.div>
       </motion.div>
+
+        {/* O'ng ustun — portret */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="relative hidden md:flex justify-center items-center md:-ml-24 lg:-ml-40"
+        >
+          {/* orqadagi oltin porlash */}
+          <div
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[460px] h-[460px] rounded-full blur-3xl pointer-events-none"
+            style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.16), transparent 65%)' }}
+          />
+
+          <div className="relative">
+            {/* siljigan oltin ramka — rasmga yaqin */}
+            <div
+              className="absolute -inset-[6px] border border-gold/45 pointer-events-none"
+              style={{ ...portraitCut, transform: 'translate(8px, 8px)' }}
+            />
+
+            <div
+              className="relative w-[400px] lg:w-[470px] h-[500px] lg:h-[590px] overflow-hidden bg-card"
+              style={portraitCut}
+            >
+              <Image
+                src="/profile-portrait.jpg"
+                alt="Khusanov Asadbek"
+                fill
+                className="object-cover"
+                style={{ objectPosition: 'center 12%' }}
+                priority
+              />
+              {/* pastki gradient — matn/fon bilan uyg'unlik */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ background: 'linear-gradient(to top, rgba(8,8,8,0.55) 0%, transparent 45%)' }}
+              />
+            </div>
+          </div>
+        </motion.div>
+      </div>
 
       {/* Burchak yorliqlari (pixila uslubi) */}
       <div className="absolute bottom-8 left-8 text-[10px] tracking-[0.3em] text-cream/40 uppercase font-body hidden md:block">

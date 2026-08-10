@@ -29,27 +29,26 @@ export default function About() {
 
         {/* Two-column layout: Image LEFT (40%), Text RIGHT (60%) */}
         <motion.div
-          className="max-w-6xl mx-auto grid md:grid-cols-5 gap-8 md:gap-12 items-center"
+          className="max-w-6xl mx-auto grid md:grid-cols-9 gap-8 md:gap-12 items-center"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           {/* Left column: Image (40%) */}
-          <div className="md:col-span-2 order-1">
+          <div className="md:col-span-4 order-1">
             <motion.div
-              className="relative w-full aspect-[4/5] max-w-md mx-auto md:max-w-full"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              className="relative w-full aspect-[796/1024] max-w-md mx-auto md:max-w-full"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <ImageWithFallback
                 src="/about.jpg"
                 alt="Asadbek Husanov"
                 fallbackText="A"
-                className="w-full h-full object-cover rounded-lg border border-gold/30 shadow-gold-glow"
+                className="w-full h-full object-contain rounded-lg border border-gold/15 bg-card"
               />
               {/* Overlay shadow from all 4 sides */}
               <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-black/20 via-transparent to-black/20 pointer-events-none" />
@@ -58,7 +57,7 @@ export default function About() {
           </div>
 
           {/* Right column: Text content (60%) */}
-          <div className="md:col-span-3 order-2">
+          <div className="md:col-span-5 order-2">
             <div className="relative">
               {/* Left border accent */}
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-gold via-gold/50 to-transparent rounded-full" />
