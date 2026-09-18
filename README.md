@@ -2,6 +2,8 @@
 
 Personal portfolio website for Asadbek Khusanov, a Full Stack Developer based in Seoul, South Korea. Built with Next.js 14, 3D visuals, and smooth animations.
 
+<img src="https://raw.githubusercontent.com/asadbek0512/asadbek0512/main/assets/khusanovdev.png" alt="Screenshot" width="100%" />
+
 ## Tech Stack
 
 | Layer | Technology |
