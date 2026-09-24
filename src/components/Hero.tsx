@@ -171,30 +171,34 @@ export default function Hero() {
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4 mb-9">
           <motion.a
             href="/files/resume.pdf"
-            download
+            target="_blank"
+            rel="noopener noreferrer"
             style={cutCorner}
             className="group flex items-center gap-3 px-8 py-3.5 bg-gold text-background font-body font-bold uppercase tracking-wider text-sm hover:bg-gold-light transition-colors duration-300"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
-            <svg className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            <svg className="w-4 h-4 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
             </svg>
-            {t('hero.download_resume')}
+            {t('hero.view_resume')}
           </motion.a>
 
           <motion.a
             href="/files/portfolio.pdf"
-            download
+            target="_blank"
+            rel="noopener noreferrer"
             style={cutCorner}
             className="group flex items-center gap-3 px-8 py-3.5 border border-gold/50 text-gold font-body font-bold uppercase tracking-wider text-sm hover:bg-gold/10 transition-colors duration-300"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
-            <svg className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            <svg className="w-4 h-4 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
             </svg>
-            {t('hero.download_portfolio')}
+            {t('hero.view_portfolio')}
           </motion.a>
         </motion.div>
 

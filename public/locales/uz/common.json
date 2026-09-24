@@ -11,8 +11,8 @@
     "title_first": "Xusanov",
     "title_last": "Asadbek",
     "subtitle": "Full Stack Dasturchi",
-    "download_portfolio": "Portfelni yuklab olish",
-    "download_resume": "Rezyumeni yuklab olish"
+    "view_portfolio": "Portfelni ko'rish",
+    "view_resume": "Rezyumeni ko'rish"
   },
   "about": {
     "title": "Men haqimda",

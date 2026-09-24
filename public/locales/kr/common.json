@@ -11,8 +11,8 @@
     "title_first": "쿠사노프",
     "title_last": "아다베크",
     "subtitle": "풀스택 개발자",
-    "download_portfolio": "포트폴리오 다운로드",
-    "download_resume": "이력서 다운로드"
+    "view_portfolio": "포트폴리오 보기",
+    "view_resume": "이력서 보기"
   },
   "about": {
     "title": "소개",
